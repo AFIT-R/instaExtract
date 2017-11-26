@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1511725818044.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "162A8381",
+    "lastKnownWriteTime" : 1511726664,
+    "last_content_update" : 1511726664527,
+    "path" : "C:/Users/Kendra Ormsbee/Dropbox/Thesis/instaExtract/instaExtract/R/searchAccountsByUsername.R",
+    "project_path" : "R/searchAccountsByUsername.R",
+    "properties" : {
+        "cursorPosition" : "14,24",
+        "scrollLine" : "2",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

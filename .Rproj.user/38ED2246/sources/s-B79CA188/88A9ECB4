@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1511719030900.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "88A9ECB4",
+    "lastKnownWriteTime" : 1511724948,
+    "last_content_update" : 1511724948342,
+    "path" : "C:/Users/Kendra Ormsbee/Dropbox/Thesis/instaExtract/instaExtract/R/getMediasByTag.R",
+    "project_path" : "R/getMediasByTag.R",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
