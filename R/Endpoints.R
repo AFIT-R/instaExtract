@@ -1,3 +1,15 @@
+###############################
+#####  Session Info ###########
+###############################
+
+generateHeaders <- function(){
+
+  headers <- ""
+
+  return <- headers
+}
+
+
 
 
 ###############################
@@ -7,6 +19,13 @@
 User_Media_Json_Link <- "https://www.instagram.com/{username}/?__a=1&max_id={maxID}"
 Tag_Media_Json_Link <- "https://www.instagram.com/explore/tags/{tag}/?__a=1&max_id={maxID}"
 Search_Json_Link <- "https://www.instagram.com/web/search/topsearch/?query={query}"
+MediaByID_Json_Link <-
+Media_Link <- "https://www.instagram.com/p/{code}"
+Media_URL_Link <- "{url}/?__a=1"
+Comments_Code_Link <- "https://www.instagram.com/graphql/query/?query_id=17852405266163336&shortcode={{shortcode}}&first={{count}}&after={{commentId}}"
+Last_Likes_Shortcode_Link <-'https://www.instagram.com/graphql/query/?query_id=17864450716183058&variables={"shortcode":"{{shortcode}}","first":{{count}},"after":"{{likeId}}"}'
+Follow_URL <- "https://www.instagram.com/web/friendships/{{accountId}}/follow/"
+
 
 
 
@@ -44,4 +63,61 @@ getSearchJsonLink <- function(query){
 
   return(link)
 
+}
+
+
+getMediaByIDJsonLink <- function(query){
+
+  link <- MediaByID_Json_Link
+  link <- gsub("{query}", query, link, fixed = TRUE)
+
+  return(link)
+
+}
+
+getMediaPageLink <- function(code){
+
+  link <- Media_Link
+  link <- gsub("{code}", code, link, fixed = TRUE)
+
+  return(link)
+}
+
+getLinkFromURL <- function(url){
+
+  link <- Media_URL_Link
+  link <- gsub("{url}", url, link, fixed = TRUE)
+
+  return(link)
+
+}
+
+getCommentsByCodeLink <- function(code, count, maxID){
+
+
+  link <- Comments_Code_Link
+  link <- gsub("{{shortcode}}", code, link, fixed = TRUE)
+  link <- gsub("{{count}}", count, link, fixed = TRUE)
+  link <- gsub("{{commentId}}", maxID, link, fixed = TRUE)
+
+  return(link)
+}
+
+getLastLikesByShortcodeLink <- function(code, count, maxID){
+
+
+  link <- Last_Likes_Shortcode_Link
+  link <- gsub("{{shortcode}}", code, link, fixed = TRUE)
+  link <- gsub("{{count}}", count, link, fixed = TRUE)
+  link <- gsub("{{likeId}}", maxID, link, fixed = TRUE)
+
+  return(link)
+}
+
+getFollowURL <- function(ID){
+
+  link <- Follow_URL
+  link <- gsub("{{accountId}}", ID, link, fixed = TRUE)
+
+  return(link)
 }

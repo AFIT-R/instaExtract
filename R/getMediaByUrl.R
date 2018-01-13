@@ -3,18 +3,29 @@
 # filler function
 #
 #INPUTS:
-# username - user who's account will be queried
+# url - direct link to the media
 #
 #OUTPUTS:
 #
-# dataframe -  n x 17 dataframe of media information.
-# colnames : _typename, id, comments_disabled, geting_info,
-# media_preview, thumbnail_src, thumbnail_resources, is_video,
-# code, date, display_src, caption, dimensions.height, dimensions.width,
-# owner.id, comments.count, likes.count
+# list - with a bunch of stuff
 
 
 
-getMediasByUsername <- function(url){
+getMediaByURL <- function(url){
+
+  #create the url from the json link
+  url <- getLinkFromURL(url)
+
+
+  #download the json data
+  response <- jsonlite::fromJSON(url)
+
+
+  # rlist::list.flatten(response$graphql$shortcode_media
+  # ldply(data.frame, flattened)
+  # response$graphql$shortcode_media[1:4]
+
+  #convert the json data to R dataframe
+  return(response)
 
 }

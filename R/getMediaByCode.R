@@ -3,18 +3,22 @@
 # filler function
 #
 #INPUTS:
-# username - user who's account will be queried
+# code - code used by instagram for a media
 #
 #OUTPUTS:
 #
-# dataframe -  n x 17 dataframe of media information.
-# colnames : _typename, id, comments_disabled, geting_info,
-# media_preview, thumbnail_src, thumbnail_resources, is_video,
-# code, date, display_src, caption, dimensions.height, dimensions.width,
-# owner.id, comments.count, likes.count
+# list - with lots of stuff
 
 
 
-getMediasByUsername <- function(code){
+getMediaByCode <- function(code){
+
+  url <- getMediaPageLink(code)
+
+  data <- getMediaByURL(mediaLink)
+
+  #then uses the link in the other function
+  return(data)
+
 
 }

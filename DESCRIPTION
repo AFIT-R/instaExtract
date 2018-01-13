@@ -14,6 +14,10 @@ Imports:
   RSelenium,
   wdman,
   tidyverse,
-  jsonlite
+  jsonlite,
+  plyr,
+  bit64,
+  rlist,
+  httr
 Depends:
   dplyr
