@@ -1,0 +1,95 @@
+---
+title: "instaExtract Readme"
+author: "Anthony Kallhoff"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output: github_document
+keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## instaExtract
+
+#Goal
+The instaExtract package aims to provide analysts a method for pulling information from Instagram and a foundation for future analytic function to be created and shared.
+
+#Features
+Chief among instaExtract's functionality is providing the tools for the user to pull relevant data from Instagram. This is accomplished by pulling information from JSON links constructed based on the user's query. These queries may be based on a user, a location, a particular post, or a hashtag. The package then returns a dataframe with the information relating to either the selected item or a number of items. These returned values depend on what item is being created, but contain such things as the username, date, number of likes, relevant hashtags, and a permanent link.  These fields form a foundation for analysts to discover trends and patterns relating to their field of study. For example, an intel officer might find that an inoccous hashtag is highly correlated with known members of an orginzation. 
+
+While the goal is for this package to be updated and accumulate useful functions as they are developed in the real world, the package starts only as a tool to pull information. Therefor, the end-user does not require much to any skill.  Simply knowing what they are looking for is all that is required.  In creating a shiny app, creating an interface that illustrates what capacity for searching the package will do will further reduce the complexity of the package. 
+
+This package relies on quite a few other packages:
+Imports:
+  rvest,
+  RSelenium,
+  wdman,
+  tidyverse,
+  jsonlite,
+  plyr,
+  bit64,
+  rlist,
+  httr
+Depends:
+  dplyr
+
+
+## Time Table
+
+```{r echo = FALSE, results = 'asis', warning = FALSE}
+library(knitr)
+
+table <- data.frame()
+
+table[1,"Feature"] <- "General Searching"
+table[1,"Priority"] <- "1"
+table[1,"Status"] <- "finished"
+table[1,"Value"] <- "Allow a user to search Instagram for the data relating to a search"
+table[1,"Input"] <- "A query: a hashtag, location, username, etc."
+table[1,"Output"] <- "A dataframe with relevant information"
+table[1,"Usage"] <- "Output will be analyzed with other tools to uncover trends"
+table[1,"Time to Create"] <- "NA"
+table[1,"Current/Pushed?"] <- "Current"
+
+row <- 2
+table[row,"Feature"] <- "Error Checking"
+table[row,"Priority"] <- "3"
+table[row,"Status"] <- "in-work"
+table[row,"Value"] <- "Report errors, stop faulty functioning code"
+table[row,"Input"] <- "NA"
+table[row,"Output"] <- "A console message"
+table[row,"Usage"] <- "Keep user informed, and program working"
+table[row,"Time to Create"] <- "Not feasible before release"
+table[row,"Current/Pushed?"] <- "Pushed"
+
+row <- 3
+table[row,"Feature"] <- "Location Mapping"
+table[row,"Priority"] <- "2"
+table[row,"Status"] <- "in-work"
+table[row,"Value"] <- "A contenxual organization of media allowing analysts insight into their origins"
+table[row,"Input"] <- "The region wishing to be populated"
+table[row,"Output"] <- "A dataframe with all location codes readily given by Instagram"
+table[row,"Usage"] <- "Use the location codes to search with a radius of a given lat long to find new posts"
+table[row,"Time to Create"] <- "A few more hours, feasible"
+table[row,"Current/Pushed?"] <- "Want to be with current version, to show potential of package"
+
+row <- 4
+table[row,"Feature"] <- "Authentication"
+table[row,"Priority"] <- "3"
+table[row,"Status"] <- "not started"
+table[row,"Value"] <- "Allow users to access information blocked for unauthorized users"
+table[row,"Input"] <- "Log in credentials"
+table[row,"Output"] <- "Headers to add to JSON links"
+table[row,"Usage"] <- "Can collect further information, such as who is following a certain user"
+table[row,"Time to Create"] <- "Could concievable be added if things progress smoothly"
+table[row,"Current/Pushed?"] <- "Most likely will be pushed"
+
+kable(table)
+
+
+```
+
+
+
+
