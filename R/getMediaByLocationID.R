@@ -37,6 +37,10 @@ getMediaByLocationID <- function(locationID, n = 12, maxID = ""){
     #the unflattened response
     response <- jsonlite::fromJSON(url)
 
+    if(!is.data.frame(response$location$media$nodes)){
+      return(NULL)
+    }
+
     #flattening the data down to the nodes, into a dataframe
     media <- jsonlite::flatten(response$location$media$nodes)
 
@@ -49,7 +53,7 @@ getMediaByLocationID <- function(locationID, n = 12, maxID = ""){
       }
 
       #will add a new row of media to data
-      data <- rbind(data,media[row,])
+      data <- plyr::rbind.fill(data,media[row,])
 
       #incrementing the counting index
       i <- i + 1
@@ -64,5 +68,5 @@ getMediaByLocationID <- function(locationID, n = 12, maxID = ""){
   }
 
   #convert the json data to R dataframe
-  return(url)
+  return(data)
 }

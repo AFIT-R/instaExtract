@@ -1,12 +1,31 @@
 Package: instaExtract
 Type: Package
-Title: What the Package Does (Title Case)
+Title: The instaExtract Package Aims to Provide Analysts a Method 
+  for Pulling Information from Instagram and a Foundation for 
+  Future Analytic Functions to be Created and Shared.
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Date: 2018-01-17
+Author: Anthony Kallhoff
+Maintainer: Anthony Kallhoff <kallhoffa@gmail.com>
+Description: Chief among instaExtract's functionality is providing the 
+  tools for the user to pull relevant data from Instagram. This is
+  accomplished by pulling information from JSON links constructed based 
+  on the user's query. These queries may be based on a user, a location, 
+  a particular post, or a hashtag. The package then returns a dataframe
+  with the information relating to either the selected item or a number
+  of items. These returned values depend on what item is being created, 
+  but contain such things as the username, date, number of likes, relevant 
+  hashtags, and a permanent link.  These fields form a foundation for 
+  analysts to discover trends and patterns relating to their field of 
+  study. For example, an intel officer might find that an inoccous hashtag 
+  is highly correlated with known members of an orginzation. 
+  While the goal is for this package to be updated and accumulate useful
+  functions as they are developed in the real world, the package starts
+  only as a tool to pull information. Therefor, the end-user does not 
+  require much to any skill.  Simply knowing what they are looking for
+  is all that is required.  In creating a shiny app, creating an interface
+  that illustrates what capacity for searching the package will do will 
+  further reduce the complexity of the package. 
 Encoding: UTF-8
 LazyData: true
 Imports:

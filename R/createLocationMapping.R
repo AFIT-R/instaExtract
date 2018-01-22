@@ -2,7 +2,7 @@
 #create a mapping for instagram posts, to search for posts in a certain range
 #from a lat long
 
-createLocationMapping <- function(country ="", city = "", all = FALSE){
+createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
 
 
@@ -10,12 +10,21 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
   #----COUNTRY SEARCH-------------
   #-------------------------------
 
+  if(country[1] != ""){
+    country_search <- data.frame()
+    for(row in 1:length(country)){
+      country_search[row, 1] <- country[row]
+      country_search[row,2] <- FALSE
+    }
+  }
+
+
   page <- ""
   more_available <- TRUE
   country_found <- FALSE
   country_data <- data.frame()
 
-  while((all || !country_found) && more_available){
+  while(!country_found && more_available){
 
     #get the link for the generic location explore hub
     url <- getLocationExploreLink(pageID = page)
@@ -31,14 +40,20 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
     for(row in 1:nrow(response_data)){
 
       #if mapping all countries, add all information to the country data
-      if(country == ""){
+      if(country[1] == ""){
         country_data <- rbind(country_data,response_data[row,])
       }
       #check if the country name matches what we are searching for
-      if(response_data[row,2] == country){
-        country_found <- TRUE
-        country_row <- row
+
+      else{
+        for(country_number in 1:nrow(country_search)){
+          if(response_data[row,2] == country_search[country_number,1]){
+            country_search[country_number,2] <- TRUE
+            country_data <- rbind(country_data,response_data[row,])
+          }
+        }
       }
+
     }
 
     #if there is a next page
@@ -49,6 +64,10 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
       more_available = FALSE
     }
 
+    if(nrow(country_data) == nrow(country_search)){
+      country_found <- TRUE
+    }
+
   }
 
   #if the country could not be found when not cataloguing all countries
@@ -57,32 +76,38 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
 
   }
 
-  if(country_found){
-    country_data <- response_data[country_row,]
-  }
-
 
   #-------------------------------
   #----CITY SEARCH-------------
   #-------------------------------
 
+
+  if(city[1] != ""){
+    city_search <- data.frame()
+    for(row in 1:length(city)){
+      city_search[row, 1] <- city[row]
+      city_search[row,2] <- FALSE
+    }
+  }
+
+  city_data <- data.frame()
+  city_found <- FALSE
+
   for(row in 1:nrow(country_data)){
 
-    print(paste(row," / ", nrow(country_data), sep = ""))
+    print(paste(row," / ", nrow(country_data), " countries", sep = ""))
     print(country_data[row,2])
 
 
     page <- ""
     more_available <- TRUE
-    city_found <- FALSE
-    city_data <- data.frame()
 
     # city_data[, "country_ID"] <- NA
     # city_data[, "country_Name"] <- NA
     # city_data[, "country_Slug"] <- NA
 
 
-    while((all || !city_found) && more_available){
+    while(!city_found && more_available){
 
       #get the link for the generic location explore hub
       url <- getLocationExploreLink(countryID = country_data[row,1], countrySlug = country_data [row,3], pageID = page)
@@ -103,18 +128,99 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
         for(subrow in 1:nrow(response_data)){
 
           #if mapping all countries, add all information to the country data
-          if(city == ""){
+          if(city[1] == ""){
             city_data <- plyr::rbind.fill(city_data,response_data[subrow,])
 
-            city_data[subrow, "country_ID"] <- country_data[row,1]
-            city_data[subrow, "country_Name"] <- country_data[row,2]
-            city_data[subrow, "country_Slug"] <- country_data[row,3]
+            city_data[nrow(city_data), "country_ID"] <- country_data[row,1]
+            city_data[nrow(city_data), "country_Name"] <- country_data[row,2]
+            city_data[nrow(city_data), "country_Slug"] <- country_data[row,3]
           }
           #check if the country name matches what we are searching for
-          if(response_data[subrow,2] == city){
-            city_found <- TRUE
-            city_row <- subrow
+          else{
+            for(city_number in 1:nrow(city_search)){
+              if(response_data[subrow,2] == city_search[city_number,1]){
+                city_search[city_number,2] <- TRUE
+
+                city_data <- plyr::rbind.fill(city_data,response_data[subrow,])
+
+                city_data[nrow(city_data), "country_ID"] <- country_data[row,1]
+                city_data[nrow(city_data), "country_Name"] <- country_data[row,2]
+                city_data[nrow(city_data), "country_Slug"] <- country_data[row,3]
+              }
+            }
           }
+
+        }#end nested for loop
+
+        #if there is a next page
+        if( !is.null(response$next_page)){
+          page = response$next_page
+        }
+        else{
+          more_available = FALSE
+        }
+
+        if(nrow(city_data) == nrow(city_search)){
+          city_found <- TRUE
+        }
+      }#end else
+
+    }#end while loop
+
+
+  } #end for loop
+
+  #-------------------------------
+  #----LOCATION SEARCH-------------
+  #-------------------------------
+
+
+  location_data <- data.frame()
+
+  for(row in 1:nrow(city_data)){
+
+    print(paste(row," / ", nrow(city_data), " cities", sep = ""))
+    print(city_data[row,2])
+
+
+    page <- ""
+    more_available <- TRUE
+
+    # city_data[, "country_ID"] <- NA
+    # city_data[, "country_Name"] <- NA
+    # city_data[, "country_Slug"] <- NA
+
+
+    while(more_available){
+
+      #get the link for the generic location explore hub
+      url <- getLocationExploreLink(countryID = city_data[row,1], countrySlug = city_data [row,3], pageID = page)
+
+      #get the data from the link
+      #will return the first page of countries
+      response <- jsonlite::fromJSON(url)
+
+      if(length(response$location_list) == 0){
+        more_available = FALSE
+      }
+      else{
+        #flattening the data down to the nodes, into a dataframe
+        response_data <- jsonlite::flatten(response$location_list)
+
+        #for every country on the current page
+        for(subrow in 1:nrow(response_data)){
+#
+#           print(paste(subrow," / ", nrow(response_data), " locations", sep = ""))
+#           print(response_data[subrow,2])
+
+          location_data <- plyr::rbind.fill(location_data,response_data[subrow,])
+          location_data[nrow(location_data), "city_ID"] <- city_data[row,1]
+          location_data[nrow(location_data), "city_Name"] <- city_data[row,2]
+          location_data[nrow(location_data), "cityy_Slug"] <- city_data[row,3]
+          location_data[nrow(location_data), "country_ID"] <- city_data[row,4]
+          location_data[nrow(location_data), "country_Name"] <- city_data[row,5]
+          location_data[nrow(location_data), "country_Slug"] <- city_data[row,6]
+
         }#end nested for loop
 
         #if there is a next page
@@ -130,17 +236,47 @@ createLocationMapping <- function(country ="", city = "", all = FALSE){
 
   } #end for loop
 
-  #if the country could not be found when not cataloguing all countries
-  if(!more_available && !city_found && !all && city != ""){
-    stop("Could not find city")
+  if(!lat_long){
 
+    return(location_data)
   }
 
-  if(city_found){
-    city_data <- response_data[city_row,]
-  }
+  #-------------------------------
+  #----LAT LONG GENERATION--------
+  #-------------------------------
+
+  print(paste("Total Locations: ",nrow(location_data), sep = ""))
+  percent <- 0
+  time <- Sys.time()
 
 
-  return(city_data)
+
+  for(row in 1:nrow(location_data)){
+
+    if(row/nrow(location_data) > percent+.01){
+      print(paste("Progress: ",percent * 100, "%", sep = ""))
+      percent <- row/nrow(location_data)
+
+      print(paste("Est Time Left: ",(Sys.time() - time)*(100 - percent*100), "seconds", sep = ""))
+      time <- Sys.time()
+    }
+
+    location_url <- getLocationExploreLink(countryID = location_data[row,1], countrySlug = location_data[row,3])
+    location_response <- jsonlite::fromJSON(location_url)
+
+    if(!is.null( location_response$location$lat)){
+
+      location_data[row, "latitude"] <- location_response$location$lat
+    }
+    if(!is.null(location_response$location$lng)){
+
+      location_data[row, "longitude"] <- location_response$location$lng
+    }
+
+  }#end lat long for loop
+
+
+
+  return(location_data)
 
 }
