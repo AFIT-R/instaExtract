@@ -12,9 +12,9 @@ getMediaByLocationMapping <- function(mapping, n = 12){
     if(row/nrow(mapping) > percent+.01){
 
       percent <- row/nrow(mapping)
-      print(paste("Progress: ",percent * 100, "%", sep = ""))
+      print(paste("Progress: ",round(percent * 100,2), "%", sep = ""))
 
-      print(paste("Est Time Left: ",(Sys.time() - time)*(100 - percent*100), "seconds", sep = ""))
+      print(paste("Est Time Left: ",round((Sys.time() - time)*(100 - percent*100),3), "seconds", sep = ""))
       time <- Sys.time()
     }
 

@@ -76,7 +76,6 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
   }
 
-
   #-------------------------------
   #----CITY SEARCH-------------
   #-------------------------------
@@ -253,11 +252,11 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
   for(row in 1:nrow(location_data)){
 
-    if(row/nrow(location_data) > percent+.01){
-      print(paste("Progress: ",percent * 100, "%", sep = ""))
+    if(row/nrow(location_data) > percent+.025){
+      print(paste("Progress: ",round(percent * 100,2), "%", sep = ""))
       percent <- row/nrow(location_data)
 
-      print(paste("Est Time Left: ",(Sys.time() - time)*(100 - percent*100), "seconds", sep = ""))
+      print(paste("Est Time Left: ",round((Sys.time() - time)*(100 - percent*100),4), "seconds", sep = ""))
       time <- Sys.time()
     }
 

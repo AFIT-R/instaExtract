@@ -21,7 +21,14 @@ searchTagsByTag <- function(tag){
   #download the json data
   data <- jsonlite::fromJSON(url)
 
-  #convert the json data to R dataframe
-  return(jsonlite::flatten(data$hashtags$hashtag))
+  if(is.data.frame(data)){
+    #convert the json data to R dataframe
+    return(jsonlite::flatten(data$hashtags$hashtag))
+  }
+
+  else{
+    return(data$hashtags$hashtag)
+  }
+
 
 }
