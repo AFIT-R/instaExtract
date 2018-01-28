@@ -19,6 +19,7 @@
 
 getMediaByTag <- function(tag, n = 20, maxID = ""){
 
+
   #indexing variable
   i <- 0
 
@@ -38,29 +39,39 @@ getMediaByTag <- function(tag, n = 20, maxID = ""){
     #the unflattened response
     response <- jsonlite::fromJSON(url)
 
-    #flattening the data down to the nodes, into a dataframe
-    media <- jsonlite::flatten(response$tag$media$nodes)
+    if(is.data.frame(response$graphql$hashtag$edge_hashtag_to_media$edges$node)){
 
-    #iterating over the rows of the media
-    for(row in 1:nrow(media)){
+      #flattening the data down to the nodes, into a dataframe
+      media <- jsonlite::flatten(response$graphql$hashtag$edge_hashtag_to_media$edges$node)
+
+      #iterating over the rows of the media
+      for(row in 1:nrow(media)){
 
         #will exit loop and return data if reaching the limit
         if(i == n){
           return(data)
         }
 
-      #will add a new row of media to data
-      data <- rbind(data,media[row,])
+        #will add a new row of media to data
+        data <- rbind(data,media[row,])
 
-      #incrementing the counting index
-      i <- i + 1
+        #incrementing the counting index
+        i <- i + 1
+
+      }
+
+      #Where to start the next query to the instagram link
+      maxID <- response$graphql$hashtag$page_info$end_cursor
+      #makes sure more exists
+      moreAvailable <- response$graphql$hashtag$page_info$has_next_page
 
     }
 
-    #Where to start the next query to the instagram link
-    maxID <- response$tag$media$page_info$end_cursor
-    #makes sure more exists
-    moreAvailable <- response$tag$media$page_info$has_next_page
+    else{
+      return(response$graphql$hashtag$edge_hashtag_to_media$edges$node)
+    }
+
+
 
   }
 

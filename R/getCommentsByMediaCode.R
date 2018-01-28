@@ -51,6 +51,10 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = ""){
     #the unflattened response
     response <- jsonlite::fromJSON(url)
 
+    if(!is.data.frame(response$data$shortcode_media$edge_media_to_comment$edges$node)){
+      stop("No comments")
+    }
+
     #flattening the data down to the nodes, into a dataframe
     media <- jsonlite::flatten(response$data$shortcode_media$edge_media_to_comment$edges$node)
 

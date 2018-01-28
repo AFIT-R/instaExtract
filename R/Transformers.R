@@ -22,6 +22,7 @@ getCodeFromID <- function(ID){
     code <- paste(substr(alphabet,remainder+1,remainder+1),code,sep="")
   }
 
+
   return(code)
 
 }
