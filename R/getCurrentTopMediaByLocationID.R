@@ -1,3 +1,20 @@
+#'@title Get Current Top Media By Location ID
+#'
+#'@description Gets the top 9 media posts for a location with the given location ID.
+#'
+#'@param ID     An Instagram ID for a location
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return 9x14 DF : id, thumbnail_src, thumbnail_resources, is_video, code, date, \cr
+#'display_src, video_views, caption, dimensions.height, dimensions.width, \cr
+#'owner.id, comments.count, likes.count
+#'
+#'
+#'@examples
+#'\dontrun{ getCurrentTopMediaByLocationID("212988663")}
+#'
+#'@export
+
 # Get CurrentTopMediasByLocationId
 #
 # returns the TOP media for a given location ID
@@ -13,7 +30,7 @@
 
 #new york is 212988663
 
-getCurrentTopMediaByLocationID <- function(locationID){
+getCurrentTopMediaByLocationID <- function(locationID, ...){
 
 
 

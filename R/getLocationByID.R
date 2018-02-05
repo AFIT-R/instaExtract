@@ -1,3 +1,18 @@
+#'@title Get Location by ID
+#'
+#'@description Returns information about a location with the given ID
+#'
+#'@param locationID   An Instagram ID for a location
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return 1 x 6 dataframe - id, name, has_public_page, lat, lng, slug
+#'
+#'
+#'@examples
+#'\dontrun{ getLocationByID("212988663")}
+#'
+#'@export
+
 # Get Location By ID
 #
 # filler function
@@ -7,18 +22,20 @@
 #
 #OUTPUTS:
 #
-# list - with location information
+# 1 x 6 dataframe - ID, name, has_public_page, lat, lng, slug
 
 
 
-getLocationByID <- function(locationID){
+getLocationByID <- function(locationID, ...){
 
   #gets the link to the media from the ID
   mediaLink <- getMediaJsonByLocationIDLink(locationID)
 
   data <- getMediaByURL(mediaLink)
 
+
+
   #then uses the link in the other function
-  return(data$location)
+  return(data.frame(data[1:6]))
 
 }

@@ -1,3 +1,22 @@
+#'@title Get Media By Username
+#'
+#'@description Gets the n most recent posts from a user with the given username
+#'
+#'@param username   An Instagram account's username
+#'@param n          The number of media posts to return
+#'@param maxID      Identifier to specify query location
+#'@param ...   Additional options passed to a shinyAppDir
+#'
+#'@return n x 17 dataframe of media information: _typename, id, \cr
+#'comments_disabled, geting_info, media_preview, thumbnail_src, \cr
+#'thumbnail_resources, is_video, code, date, display_src, caption, \cr
+#'dimensions.height, dimensions.width, owner.id, comments.count, likes.count
+#'
+#'@examples
+#'\dontrun{ getMediaByUsername("officialrickastley", 50)}
+#'
+#'@export
+
 # Get Media By Username
 #
 # this function outputs a data frame with a user's media
@@ -6,6 +25,7 @@
 #INPUTS:
 # username - user who's account will be queried
 # n - number of posts to pull
+# maxID - Identifier to specify query location
 #
 #OUTPUTS:
 #
@@ -17,7 +37,7 @@
 
 
 
-getMediaByUsername <- function(username, n = 12, maxID = ""){
+getMediaByUsername <- function(username, n = 12, maxID = "", ...){
 
 
   #indexing variable

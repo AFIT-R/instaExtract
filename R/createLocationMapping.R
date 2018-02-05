@@ -1,6 +1,36 @@
+#'@title Create Location Mapping
+#'
+#'@description Creates a dataframe listing all locations in a specified scope
+#'
+#'@param country  Country name/s for creation scope
+#'@param city     City name/s for creation scope
+#'@param lat_long True - retrieve coordinates, False - No coordinates
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return n x 11 DF where n is the number of locations in the scope: id, name, slug, city_ID, \cr
+#'city_Name, city_slug, country_ID, country_Name, country_Slug, latitude, longitude
+#'
+#'
+#'@examples
+#'\dontrun{ createLocationMapping("United States", "New York", True)}
+#'
+#'@export
 
 #create a mapping for instagram posts, to search for posts in a certain range
 #from a lat long
+
+
+# Create Location Mappingg
+#
+# returns the TOP media for a given location ID
+#
+#INPUTS:
+# locationID - location Id used by facebook
+#
+#OUTPUTS:
+#
+# n x 11 DF where n is the number of locations in the scope: id, name, slug, city_ID, city_Name, city_slug,
+#country_ID, country_Name, country_Slug, latitude, longitude
 
 createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
@@ -215,7 +245,7 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
           location_data <- plyr::rbind.fill(location_data,response_data[subrow,])
           location_data[nrow(location_data), "city_ID"] <- city_data[row,1]
           location_data[nrow(location_data), "city_Name"] <- city_data[row,2]
-          location_data[nrow(location_data), "cityy_Slug"] <- city_data[row,3]
+          location_data[nrow(location_data), "city_Slug"] <- city_data[row,3]
           location_data[nrow(location_data), "country_ID"] <- city_data[row,4]
           location_data[nrow(location_data), "country_Name"] <- city_data[row,5]
           location_data[nrow(location_data), "country_Slug"] <- city_data[row,6]
@@ -236,6 +266,10 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
   } #end for loop
 
   if(!lat_long){
+
+    #adding coloumns for consistency
+    location_data[, "latitude"] <- NA
+    location_data[, "longitude"] <- NA
 
     return(location_data)
   }

@@ -1,0 +1,7 @@
+launchApp <- function(dir){
+
+  app_dir <- system.file('apps', 'myFirstApp', package = 'instaExtract')
+
+  shiny::shinyAppDir(app_dir)
+
+}

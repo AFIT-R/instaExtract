@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "getMediaByLocationMapping <- function(mapping, n = 12){\n\n  full_data <- data.frame()\n\n  print(paste(\"Total Locations: \", nrow(mapping)))\n  percent <- 0\n  time <- Sys.time()\n\n  for(row in 1:nrow(mapping)){\n\n\n    if(row/nrow(mapping) > percent+.01){\n\n      percent <- row/nrow(mapping)\n      print(paste(\"Progress: \",round(percent * 100,2), \"%\", sep = \"\"))\n\n      print(paste(\"Est Time Left: \",round((Sys.time() - time)*(100 - percent*100),3), \"seconds\", sep = \"\"))\n      time <- Sys.time()\n    }\n\n    location_media <- getMediaByLocationID(mapping[row,1], n)\n\n    if(!is.null(location_media)){\n\n      full_data <- plyr::rbind.fill(full_data, location_media )\n\n    }\n  }\n\n  return(full_data)\n\n}\n",
+    "created" : 1516831952599.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3087332454",
+    "id" : "A124F916",
+    "lastKnownWriteTime" : 1516831972,
+    "last_content_update" : 1516831972978,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/getMediaByLocationMapping.R",
+    "project_path" : "R/getMediaByLocationMapping.R",
+    "properties" : {
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

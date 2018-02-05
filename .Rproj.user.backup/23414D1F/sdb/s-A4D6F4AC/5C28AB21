@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Get Current Top Media By Tag\n#\n# returns the TOP media for a given tag\n#\n#INPUTS:\n# tag - string of tag to be searched for\n#\n#OUTPUTS:\n#\n# 9x14 DF : id, shortcode, taken_at_timestamp, display_url, thumbnail_src,\n# thumbnail_resources, is_video, video_view_count, edge_media_to_caption.edges\n# edge_media_to_comment.count, dimensions.height, dimensions.wdith,\n# edge_liked_by.count, owner.id\n\n\ngetCurrentTopMediaByTag <- function(tag){\n\n\n\n  #Empty data frame for rows to be addded to\n  data <- data.frame()\n\n\n  #create the url from Json Link\n  url <- getTagMediaJsonLink(tag,\"\")\n\n  #retrieve the json file from the url\n  response <- jsonlite::fromJSON(url)\n\n  #pull desired info\n  data <- jsonlite::flatten(response$graphql$hashtag$edge_hashtag_to_top_posts$edges$node)\n\n  #return the converted data\n  return(data)\n\n}\n",
+    "created" : 1517184772994.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2598192308",
+    "id" : "5C28AB21",
+    "lastKnownWriteTime" : 1515860131,
+    "last_content_update" : 1515860131,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/getCurrentTopMediaByTag.R",
+    "project_path" : "R/getCurrentTopMediaByTag.R",
+    "properties" : {
+    },
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

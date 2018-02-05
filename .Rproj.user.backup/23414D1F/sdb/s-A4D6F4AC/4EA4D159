@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516820040605.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4EA4D159",
+    "lastKnownWriteTime" : 3605756244216918834,
+    "last_content_update" : 1516820040605,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "17409088",
+        "caption" : "recent_airforce_comments",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=recent_airforce_comments&cache_key=17409088",
+        "displayedObservations" : 10,
+        "environment" : "",
+        "object" : "recent_airforce_comments",
+        "preview" : 0,
+        "totalObservations" : 10,
+        "variables" : 6
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

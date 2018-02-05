@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Get CurrentTopMediasByLocationId\n#\n# returns the TOP media for a given location ID\n#\n#INPUTS:\n# locationID - location Id used by facebook\n#\n#OUTPUTS:\n#\n# 9x14 DF : id, thumbnail_src, thumbnail_resources, is_video, code, date\n# display_src, video_views, caption, dimensions.height, dimensions.width,\n#owner.id, comments.count, likes.count\n\n#new york is 212988663\n\ngetCurrentTopMediaByLocationID <- function(locationID){\n\n\n\n  #Empty data frame for rows to be addded to\n  data <- data.frame()\n\n\n  #create the url from Json Link\n  url <- getMediaJsonByLocationIDLink(locationID)\n\n  #retrieve the json file from the url\n  response <- jsonlite::fromJSON(url)\n\n  #pull desired info\n  data <- jsonlite::flatten(response$location$top_posts$nodes)\n\n  #return the converted data\n  return(data)\n\n}\n",
+    "created" : 1517184728084.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3771168891",
+    "id" : "1D5D50BB",
+    "lastKnownWriteTime" : 1515863554,
+    "last_content_update" : 1515863554,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/getCurrentTopMediaByLocationID.R",
+    "project_path" : "R/getCurrentTopMediaByLocationID.R",
+    "properties" : {
+    },
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

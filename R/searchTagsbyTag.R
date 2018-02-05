@@ -1,3 +1,17 @@
+#'@title Search Tags by Tag
+#'
+#'@description Gets the results for hashtags returned by searching the given tag
+#'
+#'@param tag   A hashtag to search for
+#'@param ...   Additional options passed to a shinyAppDir
+#'
+#'@return n x 3 dataframe where is n is the number of results: colnames : name, id, media_count
+#'
+#'@examples
+#'\dontrun{ searchTagsByTag("Air")}
+#'
+#'@export
+
 # Search Tags By Tag
 #
 # this function outputs a data frame with search results
@@ -13,7 +27,7 @@
 
 
 
-searchTagsByTag <- function(tag){
+searchTagsByTag <- function(tag, ...){
 
   #create the url from the json link
   url <- getSearchJsonLink(tag)

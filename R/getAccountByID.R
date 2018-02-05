@@ -1,3 +1,17 @@
+#'@title Get Account By ID
+#'
+#'@description Gets the account information for an Instagram ID
+#'
+#'@param ID     An Instagram ID for a media post
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return "1705564303372666424"
+#'
+#'
+#'@examples
+#'\dontrun{ getCommentsByMediaCode("1579076894773971876", 100)}
+#'
+
 # Get Account By ID
 #
 # returns the account info for a given ID

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516821148513.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B11E8B1E",
+    "lastKnownWriteTime" : 3616721883847729774,
+    "last_content_update" : 1516821148513,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "46EA6D58",
+        "caption" : "islamabad",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=islamabad&cache_key=46EA6D58",
+        "displayedObservations" : 223,
+        "environment" : "",
+        "object" : "islamabad",
+        "preview" : 0,
+        "totalObservations" : 223,
+        "variables" : 11
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

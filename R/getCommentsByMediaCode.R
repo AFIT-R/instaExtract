@@ -1,3 +1,20 @@
+#'@title Get Comments By Media Code
+#'
+#'@description Gets the first n comments for a media with a given Instagram shortcode
+#'
+#'@param code   An Instagram shortcode for a media post
+#'@param n      The number of comments to return
+#'@param maxID  An identifier for a comment that indicates where to start searching
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return n x 6 dataframe - id, text, created_at, owner.id, owner.profile_pic_url, owner.username
+#'
+#'
+#'@examples
+#'\dontrun{ getCommentsByMediaCode("W0IL2cujb3", 100)}
+#'
+#'@export
+
 # Get Comments By Media Code
 #
 # returns the first n comments for a media with given Code
@@ -12,10 +29,11 @@
 # n x 6 dataframe - id, text, created_at, owner.id, owner.profile_pic_url,
 # owner.username
 
-MAX_COMMENTS_PER_REQUEST <- 300
+
+getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
 
 
-getCommentsByMediaCode <- function(code, n = 10, maxID = ""){
+  MAX_COMMENTS_PER_REQUEST <- 300
 
 
   #indexing variable

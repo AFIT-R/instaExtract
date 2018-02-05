@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517231727811.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3F2CA687",
+    "lastKnownWriteTime" : 1517232622,
+    "last_content_update" : 1517232622081,
+    "path" : "C:/Users/Kendra Ormsbee/Dropbox/Thesis/instaExtract/instaExtract/inst/apps/myFirstApp/server.R",
+    "project_path" : "inst/apps/myFirstApp/server.R",
+    "properties" : {
+        "cursorPosition" : "8,50",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

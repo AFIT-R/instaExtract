@@ -1,3 +1,21 @@
+#'#'@title Get Current Top Media By Tag
+#'
+#'@description Gets the top 9 media posts with a given hashtag.
+#'
+#'@param tag    A character string representing the hashtag to be used
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return 9x14 DF : id, shortcode, taken_at_timestamp, display_url, thumbnail_src, \cr
+#'thumbnail_resources, is_video, video_view_count, edge_media_to_caption.edges, \cr
+#'edge_media_to_comment.count, dimensions.height, dimensions.wdith, \cr
+#'edge_liked_by.count, owner.id
+#'
+#'
+#'@examples
+#'\dontrun{ getCurrentTopMediaByTag("AirForce")}
+#'
+#'@export
+
 # Get Current Top Media By Tag
 #
 # returns the TOP media for a given tag
@@ -13,7 +31,7 @@
 # edge_liked_by.count, owner.id
 
 
-getCurrentTopMediaByTag <- function(tag){
+getCurrentTopMediaByTag <- function(tag, ...){
 
 
 

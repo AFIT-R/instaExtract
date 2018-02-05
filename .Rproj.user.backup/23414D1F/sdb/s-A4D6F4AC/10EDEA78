@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517186998688.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "10EDEA78",
+    "lastKnownWriteTime" : 2318575493020152947,
+    "last_content_update" : 1517186998688,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "1AF55B9A",
+        "caption" : "listdf",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=listdf&cache_key=1AF55B9A",
+        "displayedObservations" : 68,
+        "environment" : "",
+        "object" : "listdf",
+        "preview" : 0,
+        "totalObservations" : 68,
+        "variables" : 1
+    },
+    "relative_order" : 27,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Get Comments By Media Code\n#\n# returns the first n comments for a media with given Code\n#\n#INPUTS:\n# code - code of the media\n# n = number of comments to grab\n# maxID - the the space to start looking default Null\n#\n#OUTPUTS:\n#\n# n x 6 dataframe - id, text, created_at, owner.id, owner.profile_pic_url,\n# owner.username\n\nMAX_COMMENTS_PER_REQUEST <- 300\n\n\ngetCommentsByMediaCode <- function(code, n = 10, maxID = \"\"){\n\n\n  #indexing variable\n  i <- 0\n\n  #remaining number of comments\n  remain <- n\n\n  #boolean for checking on more data available\n  moreAvailable <- TRUE\n\n  #Empty data frame for rows to be addded to\n  data <- data.frame()\n\n\n  #will run while more data exists and it has not reached n results\n  while(moreAvailable && i < n){\n\n    if(remain > MAX_COMMENTS_PER_REQUEST){\n      numberOfCommentsToRetrieve <- MAX_COMMENTS_PER_REQUEST\n      remain <- remain - MAX_COMMENTS_PER_REQUEST\n    }\n    else{\n      numberOfCommentsToRetrieve <- remain\n      remain <- 0\n    }\n\n\n\n    #create the url from Json Link\n    url <- getCommentsByCodeLink(code, numberOfCommentsToRetrieve, maxID)\n\n    #the unflattened response\n    response <- jsonlite::fromJSON(url)\n\n    if(!is.data.frame(response$data$shortcode_media$edge_media_to_comment$edges$node)){\n      stop(\"No comments\")\n    }\n\n    #flattening the data down to the nodes, into a dataframe\n    media <- jsonlite::flatten(response$data$shortcode_media$edge_media_to_comment$edges$node)\n\n    #iterating over the rows of the media\n    for(row in 1:nrow(media)){\n\n      #will exit loop and return data if reaching the limit\n      if(i == n){\n        return(data)\n      }\n\n      #will add a new row of media to data\n      data <- plyr::rbind.fill(data,media[row,])\n\n      #incrementing the counting index\n      i <- i + 1\n\n    }\n\n    #Where to start the next query to the instagram link\n    #this version just captures the id of the last node\n    maxID <- media[nrow(media),]$node$id\n\n    #makes sure more exists\n    moreAvailable <- response$data$shortcode_media$edge_media_to_comment$page_info$has_next_page\n    numberOfComments <- response$data$shortcode_media$edge_media_to_comment$count\n\n    if(n > numberOfComments){\n      n = numberOfComments\n    }\n\n  }\n\n  #convert the json data to R dataframe\n  return(data)\n\n}\n",
+    "created" : 1517158218609.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1950188213",
+    "id" : "98BE145F",
+    "lastKnownWriteTime" : 1517160200,
+    "last_content_update" : 1517160200430,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/getCommentsByMediaCode.R",
+    "project_path" : "R/getCommentsByMediaCode.R",
+    "properties" : {
+    },
+    "relative_order" : 18,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

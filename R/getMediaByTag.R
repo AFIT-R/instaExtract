@@ -1,3 +1,21 @@
+#'@title Get Media By Tag
+#'
+#'@description Gets the n most recent posts with the given hashtag
+#'
+#'@param tag   A hashtag
+#'@param n     The number of media posts to return
+#'@param maxID Identifier to specify query location
+#'@param ...   Additional options passed to a shinyAppDir
+#'
+#'@return n x 15 dataframe: comments_disabled, id, thumbnail_src, thumbnail_resources, is_video, \cr
+#'code, date, display_src, video_views, caption, dimension.height, \cr
+#'dimensions.width, owner.id, comments.count, likes.count
+#'
+#'@examples
+#'\dontrun{ getMediaByTag("Batman", 50)}
+#'
+#'@export
+
 # Get Medias By Tag
 #
 # this function outputs a data frame translated from a json download
@@ -10,14 +28,14 @@
 #
 #OUTPUTS:
 #
-# dataframe -  n x 14 dataframe of media information.
+# dataframe -  n x 15 dataframe of media information.
 # colnames : comments_disabled, id, thumbnail_src, thumbnail_resources,
-# is_video, code, date, display_src, caption, dimensions.height,
+# is_video, code, date, display_src, video_views, caption, dimensions.height,
 # dimensions.width, owner.id, comments.count, likes.count
 
 
 
-getMediaByTag <- function(tag, n = 20, maxID = ""){
+getMediaByTag <- function(tag, n = 20, maxID = "", ...){
 
 
   #indexing variable
@@ -39,8 +57,12 @@ getMediaByTag <- function(tag, n = 20, maxID = ""){
     #the unflattened response
     response <- jsonlite::fromJSON(url)
 
-    if(is.data.frame(response$graphql$hashtag$edge_hashtag_to_media$edges$node)){
+    #will return as list if there is only one result
+    if(!is.data.frame(response$graphql$hashtag$edge_hashtag_to_media$edges$node)){
+      return(response$graphql$hashtag$edge_hashtag_to_media$edges$node)
+    }
 
+    else{
       #flattening the data down to the nodes, into a dataframe
       media <- jsonlite::flatten(response$graphql$hashtag$edge_hashtag_to_media$edges$node)
 
@@ -53,7 +75,7 @@ getMediaByTag <- function(tag, n = 20, maxID = ""){
         }
 
         #will add a new row of media to data
-        data <- rbind(data,media[row,])
+        data <- plyr::rbind.fill(data,media[row,])
 
         #incrementing the counting index
         i <- i + 1
@@ -66,13 +88,6 @@ getMediaByTag <- function(tag, n = 20, maxID = ""){
       moreAvailable <- response$graphql$hashtag$page_info$has_next_page
 
     }
-
-    else{
-      return(response$graphql$hashtag$edge_hashtag_to_media$edges$node)
-    }
-
-
-
   }
 
   #convert the json data to R dataframe

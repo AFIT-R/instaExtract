@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Get Media Likes By Code\n#\n# returns the first n usernames for the likes on a  media with given Code\n#\n#INPUTS:\n# code - code of the media\n# n = number of likes to grab\n# maxID - the the space to start looking default Null\n#\n#OUTPUTS:\n#\n# n x 7 dataframe - id, username,full_name,profile_pic_url,\n# is_verified_followed_by_viewer,requested_by_viewer\n\nMAX_LIKES_PER_REQUEST <- 300\n\n\ngetMediaLikesByCode <- function(code, n = 10, maxID = \"\"){\n\n\n  #indexing variable\n  i <- 0\n\n  #remaining number of likes\n  remain <- n\n\n  #boolean for checking on more data available\n  moreAvailable <- TRUE\n\n  #Empty data frame for rows to be addded to\n  data <- data.frame()\n\n\n  #will run while more data exists and it has not reached n results\n  while(moreAvailable && i < n){\n\n    if(remain > MAX_LIKES_PER_REQUEST){\n      number_of_likes_to_retrieve <- MAX_LIKES_PER_REQUEST\n      remain <- remain - MAX_LIKES_PER_REQUEST\n    }\n    else{\n      number_of_likes_to_retrieve <- remain\n      remain <- 0\n    }\n\n\n\n    #create the url from Json Link\n    url <- getLastLikesByShortcodeLink(code, number_of_likes_to_retrieve, maxID)\n\n    #the unflattened response\n    response <- jsonlite::fromJSON(url)\n\n    #flattening the data down to the nodes, into a dataframe\n    media <- jsonlite::flatten(response$data$shortcode_media$edge_liked_by$edges$node)\n\n    #iterating over the rows of the media\n    for(row in 1:nrow(media)){\n\n      #will exit loop and return data if reaching the limit\n      if(i == n){\n        return(data)\n      }\n\n      #will add a new row of media to data\n      data <- plyr::rbind.fill(data,media[row,])\n\n      #incrementing the counting index\n      i <- i + 1\n\n    }\n\n    #Where to start the next query to the instagram link\n    #this version just captures the id of the last node\n    maxID <- media[nrow(media),]$node$id\n\n    #makes sure more exists\n    more_available <- response$data$shortcode_media$edge_liked_by$page_info$has_next_page\n    number_of_likes <- response$data$shortcode_media$edge_liked_by$count\n\n    if(n > number_of_likes){\n      n = number_of_likes\n    }\n\n  }\n\n  #convert the json data to R dataframe\n  return(data)\n\n}\n",
+    "created" : 1517185251700.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1024144433",
+    "id" : "43C6CE0F",
+    "lastKnownWriteTime" : 1515859381,
+    "last_content_update" : 1515859381,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/getMediaLikesByCode.R",
+    "project_path" : "R/getMediaLikesByCode.R",
+    "properties" : {
+    },
+    "relative_order" : 23,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

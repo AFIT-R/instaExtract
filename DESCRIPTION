@@ -40,3 +40,4 @@ Imports:
   httr
 Depends:
   dplyr
+RoxygenNote: 6.0.1

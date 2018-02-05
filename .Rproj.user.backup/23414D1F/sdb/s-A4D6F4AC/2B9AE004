@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#----------------------\n#---INSTA EXAMPLES-----\n#----------------------\n\ndevtools::install_github(\"AFIT-R/instaExtract\")\n\n#RECREATED FUNCTIONS\n\n#find hashtags like a query provided\ntags <- searchTagsByTag(\"airforce\")\n\n#get the top 12 media posts for a tag\nbatman <- getCurrentTopMediaByTag(\"batman\")\n\n#get the most recent posts from a user\nairforce <- getMediaByUsername(\"usairforce\", 50)\n\n#get the comments on a post\nrecent_airforce_comments <- getCommentsByMediaID(airforce[1,'id'],100)\n\n\n#NEW FUNCTIONS\n\n#create a mapping for a given location\n#theres about 560 countries listed, each with about 200 cities\n#each of those have about 1000 locations,\n#and you can only get their lat long by visting their location page\n#so this can easily take a long time\n#but its the only way ive found to search around an area without going through\n#the instagram api, which is very restrictive now\n\n#FUN FACT -- the islamabad lat longs are WAYYYYY OFFF. which is really weird\n\n\n# islamabad <- createLocationMapping(\"Pakistan\", \"Islamabad\", TRUE)\n#\n# #Pakistan Institude of Nuclear Science And\n# lat <- 33.7322\n# long <- 73.0983\n# range <- 2 #in miles\n\n\nwashington_dc <- createLocationMapping(\"United States\", \"Washington\", TRUE)\n\n\n#white house lat long\nlat <- 38.8977\nlong <- -77.0365\nrange <- .5 #miles\n\n#find the locations that are within our range from the palace\nlocations_near_white_house <- filter(washington_dc,\n                                haversineDistance(lat, long, washington_dc$latitude, washington_dc$longitude) < range)\n\n#get the media for those locations near by\nnear_house_media <- getMediaByLocationMapping(locations_near_white_house)\n",
+    "created" : 1516819473014.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "977057441",
+    "id" : "2B9AE004",
+    "lastKnownWriteTime" : 1516832045,
+    "last_content_update" : 1516832045172,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/examples.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

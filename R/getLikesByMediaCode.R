@@ -1,4 +1,22 @@
-# Get Media Likes By Code
+#'@title Get Likes By Media Code
+#'
+#'@description Gets the first n likes for a media with a given Instagram shortcode
+#'
+#'@param code   An Instagram shortcode for a media post
+#'@param n      The number of comments to return
+#'@param maxID  An identifier for a comment that indicates where to start searching
+#'@param ...    Additional options passed to a shinyAppDir
+#'
+#'@return n x 7 dataframe - id, username,full_name,profile_pic_url, \cr
+#'is_verified_followed_by_viewer,requested_by_viewer
+#'
+#'
+#'@examples
+#'\dontrun{ getLikesByMediaCode("W0IL2cujb3", 100)}
+#'
+#'@export
+
+# Get Likes By Media Code
 #
 # returns the first n usernames for the likes on a  media with given Code
 #
@@ -12,11 +30,9 @@
 # n x 7 dataframe - id, username,full_name,profile_pic_url,
 # is_verified_followed_by_viewer,requested_by_viewer
 
-MAX_LIKES_PER_REQUEST <- 300
+getLikesByMediaCode <- function(code, n = 10, maxID = "", ...){
 
-
-getMediaLikesByCode <- function(code, n = 10, maxID = ""){
-
+  MAX_LIKES_PER_REQUEST <- 300
 
   #indexing variable
   i <- 0

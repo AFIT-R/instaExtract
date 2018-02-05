@@ -84,7 +84,15 @@ getMediaPageLink <- function(code){
 getLinkFromURL <- function(url){
 
   link <- Media_URL_Link
-  link <- gsub("{url}", url, link, fixed = TRUE)
+
+  #if the final "/" is included, ovewrite it to avoid double slash
+  if(substr(url, nchar(url)-1, nchar(url)) == "/"){
+    link <- gsub("{url}/", url, link, fixed = TRUE)
+  }
+  else{
+    link <- gsub("{url}", url, link, fixed = TRUE)
+  }
+
 
   return(link)
 

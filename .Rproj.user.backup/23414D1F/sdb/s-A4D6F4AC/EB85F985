@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Search Tags By Tag\n#\n# this function outputs a data frame with search results\n# for provided tag\n#\n#INPUTS:\n# tag - string that will be searched on instagram\n#\n#OUTPUTS:\n#\n# dataframe -  n x 3 dataframe of media information.\n# colnames : name, id, media_count\n\n\n\nsearchTagsByTag <- function(tag){\n\n  #create the url from the json link\n  url <- getSearchJsonLink(tag)\n\n  #download the json data\n  data <- jsonlite::fromJSON(url)\n\n  if(is.data.frame(data)){\n    #convert the json data to R dataframe\n    return(jsonlite::flatten(data$hashtags$hashtag))\n  }\n\n  else{\n    return(data$hashtags$hashtag)\n  }\n\n\n}\n",
+    "created" : 1516820154282.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2863705310",
+    "id" : "EB85F985",
+    "lastKnownWriteTime" : 1516820234,
+    "last_content_update" : 1516820234172,
+    "path" : "C:/Users/Anthony/Dropbox/Thesis/instaExtract/instaExtract/R/searchTagsbyTag.R",
+    "project_path" : "R/searchTagsbyTag.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
