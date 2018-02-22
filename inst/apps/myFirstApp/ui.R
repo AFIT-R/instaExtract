@@ -1,19 +1,21 @@
 ui <- fluidPage(title = 'My First App!',
                 theme = shinythemes::shinytheme('flatly'),
-                sidebarLayout(sidebarPanel
-                              (width=3,
-                                sliderInput("num_colors",
-                                            label="Number of colors:",
-                                            min=1,
-                                            max=9,
-                                            value=7),
-                                selectInput("select",
-                                            label="Select Demographic:",
-                                            choices=colnames(map_data)[2:9],
-                                            selected = 1)),
-                              mainPanel(width=9,
-                                        tabsetPanel(
-                                          tabPanel(title='Output Map',
-                                                   plotOutput(outputId="map")),
-                                          tabPanel(title='Data Table',
-                                                   dataTableOutput(outputId='table'))))))
+
+                #TEXT INPUT
+                textInput("text", label = h3("Text input"), value = "Enter text..."),
+
+                hr(),
+                fluidRow(column(3, verbatimTextOutput("value"))),
+
+
+                #SEARCH SELECTION
+                checkboxGroupInput("checkGroup", label = h3("Checkbox group"),
+                                   choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
+                                   selected = 1),
+
+
+                hr(),
+                fluidRow(column(3, verbatimTextOutput("value")))
+
+
+                )

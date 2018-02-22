@@ -62,6 +62,11 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
     #flattening the data down to the nodes, into a dataframe
     media <- jsonlite::flatten(response$user$media$nodes)
 
+
+    #dropping thumbnail resources and gating info since it is mostly useless and comes back as a list
+    media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
+
+
     #iterating over the rows of the media
     for(row in 1:nrow(media)){
 

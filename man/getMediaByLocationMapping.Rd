@@ -16,10 +16,11 @@ getMediaByLocationMapping(mapping, n = 12, ...)
 \item{maxID}{Identifier to specify query location}
 }
 \value{
-(n*m) x 15 dataframe where m is the number of locations in mapping: \cr
-comments_disabled, id, thumbnail_src, thumbnail_resources, is_video, \cr
-code, date, display_src, video_views, caption, dimension.height, \cr
-dimensions.width, owner.id, comments.count, likes.count
+(n*m) x 17 dataframe where m is the number of locations in mapping: \cr
+comments_disabled, id, thumbnail_src, is_video, code, date, display_src, \cr
+video_views, caption, dimension.height, dimensions.width, \cr
+edge_media_preview_like.count, owner.id, comments.count, \cr
+likes.count, location_name, location_id
 }
 \description{
 Gets the n most recent media posts for all locations in  a location mapping

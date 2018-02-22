@@ -32,7 +32,5 @@ lat <- 40.7484
 long <- 73.9857
 radius <- 0.5 #miles
 
-smaller_mapping <- getLocationsInRange(mapping, radius, lat, long)
-}
-
+smaller_mapping <- getLocationsInRange(mapping, radius, lat, long)}
 }

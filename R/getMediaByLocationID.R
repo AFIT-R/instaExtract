@@ -61,7 +61,10 @@ getMediaByLocationID <- function(locationID, n = 12, maxID = "", ...){
     }
 
     #flattening the data down to the nodes, into a dataframe
-    media <- jsonlite::flatten(response$location$media$nodes)
+    media <- tryCatch(jsonlite::flatten(response$location$media$nodes),
+                      error = function(cond){
+                        return(NA)
+                      })
 
     #iterating over the rows of the media
     for(row in 1:nrow(media)){

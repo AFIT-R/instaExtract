@@ -31,11 +31,11 @@
 
 
 
-getCommentsByMediaID <- function(mediaID, n = 10, maxID = NULL, ...){
+getCommentsByMediaID <- function(mediaID, n = 10, maxID = '', ...){
 
   code <- getCodeFromID(mediaID)
 
-  data <- getCommentsByMediaCode(code)
+  data <- getCommentsByMediaCode(code, n, maxID)
 
   #convert the json data to R dataframe
   return(data)

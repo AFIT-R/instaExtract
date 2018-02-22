@@ -49,13 +49,17 @@ getMediaByTag <- function(tag, n = 20, maxID = "", ...){
 
 
   #will run while more data exists and it has not reached n results
-  while(moreAvailable && i < n){
+  while(moreAvailable && (i < n)){
 
     #create the url from Json Link
     url <- getTagMediaJsonLink(tag,maxID)
 
     #the unflattened response
-    response <- jsonlite::fromJSON(url)
+    response <- tryCatch( jsonlite::fromJSON(url),
+                          error = function(cond){
+                            print("There was an error, but we kept going. Check for duplicates");
+                          }
+    )
 
     #will return as list if there is only one result
     if(!is.data.frame(response$graphql$hashtag$edge_hashtag_to_media$edges$node)){
@@ -83,9 +87,9 @@ getMediaByTag <- function(tag, n = 20, maxID = "", ...){
       }
 
       #Where to start the next query to the instagram link
-      maxID <- response$graphql$hashtag$page_info$end_cursor
+      maxID <- response$graphql$hashtag$edge_hashtag_to_media$page_info$end_cursor
       #makes sure more exists
-      moreAvailable <- response$graphql$hashtag$page_info$has_next_page
+      moreAvailable <- response$graphql$hashtag$edge_hashtag_to_media$page_info$has_next_page
 
     }
   }
