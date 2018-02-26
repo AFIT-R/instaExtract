@@ -1,7 +1,3 @@
-[![Build Status]
-(https://travis-ci.org/AFIT-R/instaExtract.svg?branch=master)]
-(https://travis-ci.org/AFIT-R/instaExtract)
-
 ---
 title: "instaExtract Readme"
 author: "Anthony Kallhoff"
@@ -9,6 +5,8 @@ date: "`r format(Sys.Date(), '%d %B %Y')`"
 output: github_document
 keep_md: yes
 ---
+
+[![Build Status](https://travis-ci.org/AFIT-R/instaExtract.svg?branch=master)](https://travis-ci.org/AFIT-R/instaExtract)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

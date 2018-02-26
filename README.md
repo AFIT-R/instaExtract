@@ -1,7 +1,9 @@
 instaExtract Readme
 ================
 Anthony Kallhoff
-17 January 2018
+26 February 2018
+
+[![Build Status](https://travis-ci.org/AFIT-R/instaExtract.svg?branch=master)](https://travis-ci.org/AFIT-R/instaExtract)
 
 instaExtract
 ------------
