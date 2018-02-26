@@ -1,3 +1,7 @@
+[![Build Status]
+(https://travis-ci.org/AFIT-R/instaExtract.svg?branch=master)]
+(https://travis-ci.org/AFIT-R/instaExtract)
+
 ---
 title: "instaExtract Readme"
 author: "Anthony Kallhoff"
