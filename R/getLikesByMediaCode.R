@@ -65,7 +65,7 @@ getLikesByMediaCode <- function(code, n = 10, maxID = "", ...){
     url <- getLastLikesByShortcodeLink(code, number_of_likes_to_retrieve, maxID)
 
     #the unflattened response
-    response <- jsonlite::fromJSON(url)
+    response <- getJSONFromURL(url)
 
     #flattening the data down to the nodes, into a dataframe
     media <- jsonlite::flatten(response$data$shortcode_media$edge_liked_by$edges$node)

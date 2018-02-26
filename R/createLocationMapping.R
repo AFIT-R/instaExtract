@@ -61,7 +61,7 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
     #get the data from the link
     #will return the first page of countries
-    response <- jsonlite::fromJSON(url)
+    response <- getJSONFromURL(url)
 
     #flattening the data down to the nodes, into a dataframe
     response_data <- jsonlite::flatten(response$country_list)
@@ -143,7 +143,7 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
       #get the data from the link
       #will return the first page of countries
-      response <- jsonlite::fromJSON(url)
+      response <- getJSONFromURL(url)
 
 
       if(length(response$city_list) == 0){
@@ -227,7 +227,7 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
 
       #get the data from the link
       #will return the first page of countries
-      response <- jsonlite::fromJSON(url)
+      response <- getJSONFromURL(url)
 
       if(length(response$location_list) == 0){
         more_available = FALSE
@@ -295,7 +295,7 @@ createLocationMapping <- function(country ="", city = "", lat_long = FALSE){
     }
 
     location_url <- getLocationExploreLink(countryID = location_data[row,1], countrySlug = location_data[row,3])
-    location_response <- jsonlite::fromJSON(location_url)
+    location_response <- getJSONFromURL(url)
 
     if(!is.null( location_response$location$lat)){
 

@@ -62,7 +62,7 @@ getMediaByURL <- function(url, ...){
   url <- getLinkFromURL(url)
 
   #download the json data
-  response <- jsonlite::fromJSON(url)
+  response <- getJSONFromURL(url)
 
   #the response narrowed to information
   response <- response$graphql$shortcode_media

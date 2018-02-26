@@ -33,7 +33,7 @@ searchTagsByTag <- function(tag, ...){
   url <- getSearchJsonLink(tag)
 
   #download the json data
-  data <- jsonlite::fromJSON(url)
+  data <- getJSONFromURL(url)
 
   if(is.data.frame(data)){
     #convert the json data to R dataframe

@@ -41,4 +41,5 @@ Imports:
   lubridate
 Depends:
   dplyr
+License: GPL (>= 2) | file LICENSE
 RoxygenNote: 6.0.1

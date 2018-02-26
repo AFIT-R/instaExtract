@@ -54,7 +54,7 @@ getMediaByLocationID <- function(locationID, n = 12, maxID = "", ...){
     url <- getMediaJsonByLocationIDLink(locationID,maxID)
 
     #the unflattened response
-    response <- jsonlite::fromJSON(url)
+    response <- getJSONFromURL(url)
 
     if(!is.data.frame(response$location$media$nodes)){
       return(NULL)

@@ -29,6 +29,25 @@ MEDIA_JSON_BY_LOCATION_ID <- 'https://www.instagram.com/explore/locations/{{face
 LOCATION_EXPLORE_LINK <- "https://www.instagram.com/explore/locations{{countryID}}{{countrySlug}}/?__a=1&page={{pageID}}"
 
 
+##########################
+### Default Url Grab  ####
+##########################
+getJSONFromURL <- function(url){
+
+  response <- tryCatch(jsonlite::fromJSON(url),
+                       error= function(err){
+                         #the error when the json file isn't correct
+                         if( attr(err,'class')[1] == 'simpleError'){
+                           cat(paste("URL used does not return a JSON File or link doesn't work.  JSONLite returned:\n", err))
+                         }
+                       }
+                       )
+  return(response)
+}
+
+
+
+
 
 
 ##########################

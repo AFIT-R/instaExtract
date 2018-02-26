@@ -42,7 +42,7 @@ getCurrentTopMediaByLocationID <- function(locationID, ...){
   url <- getMediaJsonByLocationIDLink(locationID)
 
   #retrieve the json file from the url
-  response <- jsonlite::fromJSON(url)
+  response <- getJSONFromURL(url)
 
   #pull desired info
   data <- jsonlite::flatten(response$location$top_posts$nodes)

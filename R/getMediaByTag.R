@@ -55,11 +55,7 @@ getMediaByTag <- function(tag, n = 20, maxID = "", ...){
     url <- getTagMediaJsonLink(tag,maxID)
 
     #the unflattened response
-    response <- tryCatch( jsonlite::fromJSON(url),
-                          error = function(cond){
-                            print("There was an error, but we kept going. Check for duplicates");
-                          }
-    )
+    response <- getJSONFromURL(url)
 
     #will return as list if there is only one result
     if(!is.data.frame(response$graphql$hashtag$edge_hashtag_to_media$edges$node)){

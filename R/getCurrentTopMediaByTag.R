@@ -43,7 +43,7 @@ getCurrentTopMediaByTag <- function(tag, ...){
   url <- getTagMediaJsonLink(tag,"")
 
   #retrieve the json file from the url
-  response <- jsonlite::fromJSON(url)
+  response <- getJSONFromURL(url)
 
   #pull desired info
   data <- jsonlite::flatten(response$graphql$hashtag$edge_hashtag_to_top_posts$edges$node)

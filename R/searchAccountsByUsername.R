@@ -38,7 +38,7 @@ searchAccountsByUsername <- function(username, ...){
   url <- getSearchJsonLink(username)
 
   #download the json data
-  data <- jsonlite::fromJSON(url)
+  data <- getJSONFromURL(url)
 
   #convert the json data to R dataframe
   return(jsonlite::flatten(data$users$user))

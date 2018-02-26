@@ -57,7 +57,7 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
     url <- getUserMediaJsonLink(username, maxID)
 
     #the unflattened response
-    response <- jsonlite::fromJSON(url)
+    response <- getJSONFromURL(url)
 
     #flattening the data down to the nodes, into a dataframe
     media <- jsonlite::flatten(response$user$media$nodes)
