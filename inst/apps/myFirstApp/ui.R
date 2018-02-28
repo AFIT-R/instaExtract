@@ -1,3 +1,5 @@
+library(ggplot2)
+
 ui <- fluidPage(title = 'My First App!',
                 theme = shinythemes::shinytheme('flatly'),
 
@@ -13,7 +15,7 @@ ui <- fluidPage(title = 'My First App!',
                   textInput("text", label = h3("Text input"), value = "Enter text..."),
 
                   #action button
-                  actionButton("search", "Change")
+                  actionButton("search", "Search")
 
                   ),
 
@@ -21,6 +23,7 @@ ui <- fluidPage(title = 'My First App!',
                 # Create a spot for the barplot
                 mainPanel(
                 )
+
 
 
                 )

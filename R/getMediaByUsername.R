@@ -68,11 +68,12 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
 
 
     #dropping thumbnail resources and gating info since it is mostly useless and comes back as a list
-    if(exists(media$gating_info)){
+    if('gating_info.buttons' %in% colnames(media)){
+      return(media)
       media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
     }
     else{
-      media <- subset(media, select = thumbnail_resources)
+      media <- subset(media, select = -c(thumbnail_resources,gating_info))
     }
 
 
