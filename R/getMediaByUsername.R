@@ -7,6 +7,10 @@
 #'@param maxID      Identifier to specify query location
 #'@param ...   Additional options passed to a shinyAppDir
 #'
+#'@import dplyr
+#'@import plyr
+#'@import jsonlite
+#'
 #'@return n x 17 dataframe of media information: _typename, id, \cr
 #'comments_disabled, geting_info, media_preview, thumbnail_src, \cr
 #'thumbnail_resources, is_video, code, date, display_src, caption, \cr
@@ -64,7 +68,13 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
 
 
     #dropping thumbnail resources and gating info since it is mostly useless and comes back as a list
-    media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
+    if(exists(media$gating_info)){
+      media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
+    }
+    else{
+      media <- subset(media, select = thumbnail_resources)
+    }
+
 
 
     #iterating over the rows of the media

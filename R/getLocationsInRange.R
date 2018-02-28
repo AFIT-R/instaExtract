@@ -7,6 +7,7 @@
 #'@param lat     Double for latitude of search center
 #'@param long    Double for longitude of search center
 #'@param ...    Additional options passed to a shinyAppDir
+#'@import dplyr
 #'
 #'@return n x 9 DF where n is the number of locations in the scope: \cr
 #'id, name, slug, city_ID, city_Name, city_slug,country_ID, country_Name, country_Slug

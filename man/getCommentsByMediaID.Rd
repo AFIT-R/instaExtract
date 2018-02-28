@@ -4,7 +4,7 @@
 \alias{getCommentsByMediaID}
 \title{Get Comments By Media ID}
 \usage{
-getCommentsByMediaID(mediaID, n = 10, maxID = NULL, ...)
+getCommentsByMediaID(mediaID, n = 10, maxID = "", ...)
 }
 \arguments{
 \item{n}{The number of comments to return}

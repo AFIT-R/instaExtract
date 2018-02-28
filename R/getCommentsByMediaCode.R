@@ -7,6 +7,9 @@
 #'@param maxID  An identifier for a comment that indicates where to start searching
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import jsonlite
+#'@import plyr
+#'
 #'@return n x 6 dataframe - id, text, created_at, owner.id, owner.profile_pic_url, owner.username
 #'
 #'

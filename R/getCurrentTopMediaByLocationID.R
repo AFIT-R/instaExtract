@@ -5,6 +5,8 @@
 #'@param ID     An Instagram ID for a location
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import jsonlite
+#'
 #'@return 9x14 DF : id, thumbnail_src, thumbnail_resources, is_video, code, date, \cr
 #'display_src, video_views, caption, dimensions.height, dimensions.width, \cr
 #'owner.id, comments.count, likes.count

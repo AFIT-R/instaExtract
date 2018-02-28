@@ -5,6 +5,8 @@
 #'@param ID     An Instagram ID for a media post
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import httr
+#'
 #'@return "1705564303372666424"
 #'
 #'
@@ -36,7 +38,7 @@ getAccountByID <- function(ID){
     url <- getFollowURL(ID)
 
     #the unflattened response
-    responseURL <- httr:GET(url)$location
+    responseURL <- httr::GET(url)$location
 
     #flattening the data down to the nodes, into a dataframe
     #media <- jsonlite::flatten(response)

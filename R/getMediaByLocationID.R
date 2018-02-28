@@ -7,6 +7,9 @@
 #'@param maxID       Identifier to specify query location
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import jsonlite
+#'@import plyr
+#'
 #'@return n x 15 dataframe: comments_disabled, id, thumbnail_src, thumbnail_resources, is_video, \cr
 #'code, date, display_src, video_views, caption, dimension.height, \cr
 #'dimensions.width, owner.id, comments.count, likes.count

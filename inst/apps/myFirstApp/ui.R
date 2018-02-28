@@ -1,21 +1,26 @@
 ui <- fluidPage(title = 'My First App!',
                 theme = shinythemes::shinytheme('flatly'),
 
-                #TEXT INPUT
-                textInput("text", label = h3("Text input"), value = "Enter text..."),
-
-                hr(),
-                fluidRow(column(3, verbatimTextOutput("value"))),
 
 
-                #SEARCH SELECTION
-                checkboxGroupInput("checkGroup", label = h3("Checkbox group"),
-                                   choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
-                                   selected = 1),
+                # Define the sidebar with one input
+                sidebarPanel(
+                  #category selector
+                  selectInput("searchCategory", "Category:",
+                              choices=c('Hashtag','Username')),
+
+                  #TEXT INPUT
+                  textInput("text", label = h3("Text input"), value = "Enter text..."),
+
+                  #action button
+                  actionButton("search", "Change")
+
+                  ),
 
 
-                hr(),
-                fluidRow(column(3, verbatimTextOutput("value")))
+                # Create a spot for the barplot
+                mainPanel(
+                )
 
 
                 )

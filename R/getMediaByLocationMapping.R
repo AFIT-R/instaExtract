@@ -7,6 +7,9 @@
 #'@param maxID    Identifier to specify query location
 #'@param ...      Additional options passed to a shinyAppDir
 #'
+#'@import lubridate
+#'@import plyr
+#'
 #'@return  (n*m) x 17 dataframe where m is the number of locations in mapping: \cr
 #' comments_disabled, id, thumbnail_src, is_video, code, date, display_src, \cr
 #' video_views, caption, dimension.height, dimensions.width, \cr

@@ -5,6 +5,8 @@
 #'@param mapping  A location mapping following the format of createLocationMapping()
 #'@param ...      Additional options passed to a shinyAppDir
 #'
+#'@import plyr
+#'
 #'@return (9*n)x14 DF where n is the number of locations in mapping: \cr
 #'id, thumbnail_src, thumbnail_resources, is_video, code, date, \cr
 #'display_src, video_views, caption, dimensions.height, dimensions.width, \cr

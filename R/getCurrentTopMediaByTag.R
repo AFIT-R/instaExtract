@@ -5,6 +5,8 @@
 #'@param tag    A character string representing the hashtag to be used
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import jsonlite
+#'
 #'@return 9x14 DF : id, shortcode, taken_at_timestamp, display_url, thumbnail_src, \cr
 #'thumbnail_resources, is_video, video_view_count, edge_media_to_caption.edges, \cr
 #'edge_media_to_comment.count, dimensions.height, dimensions.wdith, \cr

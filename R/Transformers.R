@@ -9,7 +9,8 @@ getIDFromCode <- function(code){
   return(ID)
 }
 
-
+#'@import bit64
+#'@import dplyr
 getCodeFromID <- function(ID){
   alphabet <- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
   code <- ""
@@ -27,6 +28,7 @@ getCodeFromID <- function(ID){
 
 }
 
+#'@import dplyr
 getLinkFromID <- function(ID){
 
   return(

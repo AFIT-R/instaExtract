@@ -7,6 +7,9 @@
 #'@param lat_long True - retrieve coordinates, False - No coordinates
 #'@param ...    Additional options passed to a shinyAppDir
 #'
+#'@import jsonlite
+#'@import plyr
+#'
 #'@return n x 11 DF where n is the number of locations in the scope: id, name, slug, city_ID, \cr
 #'city_Name, city_slug, country_ID, country_Name, country_Slug, latitude, longitude
 #'
