@@ -37,7 +37,7 @@
 #owner.id, comments.count, likes.count
 
 
-getCurrenTopMediaByLocationMapping <- function(mapping, ...){
+getCurrentTopMediaByLocationMapping <- function(mapping, ...){
 
   #the dataframe that will eventually be returned
   full_data <- data.frame()
