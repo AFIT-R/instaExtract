@@ -5,7 +5,7 @@
 #'@param ID     An Instagram ID for a media post
 #'@param ...    Additional options passed to a shinyAppDir
 #'
-#'@import httr
+#'@importFrom httr GET
 #'
 #'@return "1705564303372666424"
 #'

@@ -8,8 +8,8 @@
 #'@param ...   Additional options passed to a shinyAppDir
 #'
 #'@import dplyr
-#'@import plyr
-#'@import jsonlite
+#'@importFrom plyr rbind.fill
+#'@importFrom jsonlite flatten
 #'
 #'@return n x 17 dataframe of media information: _typename, id, \cr
 #'comments_disabled, geting_info, media_preview, thumbnail_src, \cr

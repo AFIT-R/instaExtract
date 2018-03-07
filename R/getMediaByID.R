@@ -2,8 +2,8 @@
 #'
 #'@description Gets information for a media post with given Instagram shortcode
 #'
-#'@param ID     The Instagram ID for a chosen media post
-#'@param ...    Additional options passed to a shinyAppDir
+#'@param mediaID  The Instagram ID for a chosen media post
+#'@param ...      Additional options passed to a shinyAppDir
 #'
 #'@return 1 x 42 dataframe: X__typename, id, shortcode, dimensions.height, dimensions.width, \cr
 #'media_preview, display_url, display_resources.src1, display_resources.src2, display_resources.src3, \cr

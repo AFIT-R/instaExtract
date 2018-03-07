@@ -24,7 +24,6 @@ Gets the top 9 media posts for a location with the given location ID.
 \dontrun
 {
 mapping <- createLocationMapping("United States", "New York")
-
 getCurrentTopMediaByLocationMapping(mapping)
 }
 

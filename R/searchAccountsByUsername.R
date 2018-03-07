@@ -5,7 +5,7 @@
 #'@param username   A username to search for
 #'@param ...   Additional options passed to a shinyAppDir
 #'
-#'@import jsonlite
+#'@importFrom jsonlite flatten
 #'
 #'@return nx11 dataframe where n is number returned: pk (owner.id), username, full_name, \cr
 #'is_private, profile_pic_url, profile_pic_id, is_verified, has_anonymous_profile_picture, \cr

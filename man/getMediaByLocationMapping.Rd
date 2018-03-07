@@ -12,8 +12,6 @@ getMediaByLocationMapping(mapping, n = 12, ...)
 \item{n}{The number of results to retrieve for each location}
 
 \item{...}{Additional options passed to a shinyAppDir}
-
-\item{maxID}{Identifier to specify query location}
 }
 \value{
 (n*m) x 17 dataframe where m is the number of locations in mapping: \cr
@@ -29,7 +27,6 @@ Gets the n most recent media posts for all locations in  a location mapping
 \dontrun
 {
 mapping <- createLocationMapping("United States", "New York")
-
 getMediaByLocationMapping(mapping)
 }
 

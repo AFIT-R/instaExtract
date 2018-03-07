@@ -7,13 +7,13 @@
 getCommentsByMediaID(mediaID, n = 10, maxID = "", ...)
 }
 \arguments{
+\item{mediaID}{An Instagram ID for a media post}
+
 \item{n}{The number of comments to return}
 
 \item{maxID}{An identifier for a comment that indicates where to start searching}
 
 \item{...}{Additional options passed to a shinyAppDir}
-
-\item{ID}{An Instagram ID for a media post}
 }
 \value{
 n x 6 dataframe - id, text, created_at, owner.id, owner.profile_pic_url, owner.username

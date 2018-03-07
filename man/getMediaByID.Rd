@@ -7,9 +7,9 @@
 getMediaByID(mediaID, ...)
 }
 \arguments{
-\item{...}{Additional options passed to a shinyAppDir}
+\item{mediaID}{The Instagram ID for a chosen media post}
 
-\item{ID}{The Instagram ID for a chosen media post}
+\item{...}{Additional options passed to a shinyAppDir}
 }
 \value{
 1 x 42 dataframe: X__typename, id, shortcode, dimensions.height, dimensions.width, \cr

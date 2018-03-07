@@ -2,10 +2,10 @@
 #'
 #'@description Gets the top 9 media posts for a location with the given location ID.
 #'
-#'@param ID     An Instagram ID for a location
+#'@param locationID     An Instagram ID for a location
 #'@param ...    Additional options passed to a shinyAppDir
 #'
-#'@import jsonlite
+#'@importFrom jsonlite flatten
 #'
 #'@return 9x14 DF : id, thumbnail_src, thumbnail_resources, is_video, code, date, \cr
 #'display_src, video_views, caption, dimensions.height, dimensions.width, \cr

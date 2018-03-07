@@ -7,9 +7,9 @@
 getCurrentTopMediaByLocationID(locationID, ...)
 }
 \arguments{
-\item{...}{Additional options passed to a shinyAppDir}
+\item{locationID}{An Instagram ID for a location}
 
-\item{ID}{An Instagram ID for a location}
+\item{...}{Additional options passed to a shinyAppDir}
 }
 \value{
 9x14 DF : id, thumbnail_src, thumbnail_resources, is_video, code, date, \cr

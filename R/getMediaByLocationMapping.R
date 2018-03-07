@@ -4,11 +4,10 @@
 #'
 #'@param mapping  A location mapping following the format of createLocationMapping()
 #'@param n        The number of results to retrieve for each location
-#'@param maxID    Identifier to specify query location
 #'@param ...      Additional options passed to a shinyAppDir
 #'
-#'@import lubridate
-#'@import plyr
+#'@importFrom lubridate seconds_to_period
+#'@importFrom plyr rbind.fill
 #'
 #'@return  (n*m) x 17 dataframe where m is the number of locations in mapping: \cr
 #' comments_disabled, id, thumbnail_src, is_video, code, date, display_src, \cr
@@ -21,7 +20,6 @@
 #'\dontrun
 #'{
 #'mapping <- createLocationMapping("United States", "New York")
-#'
 #'getMediaByLocationMapping(mapping)
 #'}
 #'

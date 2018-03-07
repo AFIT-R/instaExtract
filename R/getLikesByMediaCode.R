@@ -7,8 +7,8 @@
 #'@param maxID  An identifier for a comment that indicates where to start searching
 #'@param ...    Additional options passed to a shinyAppDir
 #'
-#'@import jsonlite
-#'@import plyr
+#'@importFrom jsonlite flatten
+#'@importFrom plyr rbind.fill
 #'
 #'@return n x 7 dataframe - id, username,full_name,profile_pic_url, \cr
 #'is_verified_followed_by_viewer,requested_by_viewer

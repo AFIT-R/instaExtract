@@ -32,7 +32,7 @@ LOCATION_EXPLORE_LINK <- "https://www.instagram.com/explore/locations{{countryID
 ##########################
 ### Default Url Grab  ####
 ##########################
-#'@import jsonlite
+#'@importFrom jsonlite fromJSON
 getJSONFromURL <- function(url){
 
   response <- tryCatch(jsonlite::fromJSON(url),

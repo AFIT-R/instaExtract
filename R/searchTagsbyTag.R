@@ -5,7 +5,7 @@
 #'@param tag   A hashtag to search for
 #'@param ...   Additional options passed to a shinyAppDir
 #'
-#'@import jsonlite
+#'@importFrom jsonlite flatten
 #'
 #'@return n x 3 dataframe where is n is the number of results: colnames : name, id, media_count
 #'
