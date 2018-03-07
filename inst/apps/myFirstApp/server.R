@@ -19,7 +19,7 @@ server <- function(input,output,session){
     if(input$getCategory == 'Media'){
       switch(input$queryCategory,
              "Username" = {
-               values$df_get_data <- getMediaByUsername(as.character(input$getText))
+               values$df_get_data <- getMediaByUsername(as.character(input$getText), input$getN)
                get_results <<- values$df_get_data
              }
       )
@@ -41,20 +41,19 @@ server <- function(input,output,session){
 #     }
 #   })
 
-  # output$box <- renderUI({
-  #   if (is.null(input$input_type))
-  #      return()
-  #
-  #   # Depending on input$input_type, we'll generate a different
-  #   # UI component and send it to the client.
-  #   switch(input$input_type,
-  #          "slider" = sliderInput("dynamic", "Dynamic",
-  #                                 min = 1, max = 20, value = 10),
-  #          "text" = textInput("dynamic", "Dynamic",
-  #                             value = "starting value")
-  #   )
-  # })
-  # outputOptions(output, "box", suspendWhenHidden = FALSE)
+  output$box <- renderUI({
+    if (is.null(input$input_type))
+       return()
+
+    # Depending on input$input_type, we'll generate a different
+    # UI component and send it to the client.
+    switch(input$input_type,
+           "slider" = sliderInput("dynamic", "Dynamic",
+                                  min = 1, max = 20, value = 10),
+           "text" = textInput("dynamic", "Dynamic",
+                              value = "starting value")
+    )
+  })
 
   output$search_data_out  <- DT::renderDataTable(values$df_data)
   output$get_data_out  <- DT::renderDataTable(values$df_get_data)

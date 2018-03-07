@@ -75,13 +75,16 @@ ui <- navbarPage(title = 'My First App!',
                            #TEXT INPUT
                            textInput("getText", label = h3("Query"), value = "Enter text..."),
 
+                           #n input
+                           numericInput("getN", label = h3("Number of Results"), value = '', min = 1),
 
 
-                           # selectInput("input_type", "Input type",
-                           #               c("slider", "text")
-                           #   ),
 
-                           #uiOutput("box"),
+                           selectInput("input_type", "Input type",
+                                         c("slider", "text")
+                             ),
+
+                           uiOutput("box"),
 
                            #action button
                            actionButton("get", "Get")

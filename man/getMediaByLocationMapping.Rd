@@ -24,7 +24,9 @@ likes.count, location_name, location_id
 Gets the n most recent media posts for all locations in  a location mapping
 }
 \examples{
-\dontrun
-{smapping <- createLocationMapping("United States", "New York")
-getMediaByLocationMapping(mapping)}
+\dontrun{
+smapping <- createLocationMapping("United States", "New York")
+getMediaByLocationMapping(mapping)
+}
+
 }

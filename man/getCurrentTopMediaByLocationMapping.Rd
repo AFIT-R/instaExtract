@@ -21,7 +21,9 @@ owner.id, comments.count, likes.count
 Gets the top 9 media posts for a location with the given location ID.
 }
 \examples{
-\dontrun
-{mapping <- createLocationMapping("United States", "New York")
-getCurrentTopMediaByLocationMapping(mapping)}
+\dontrun{
+mapping <- createLocationMapping("United States", "New York")
+getCurrentTopMediaByLocationMapping(mapping)
+}
+
 }
