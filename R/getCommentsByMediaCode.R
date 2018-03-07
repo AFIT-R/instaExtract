@@ -73,7 +73,8 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
     response <- getJSONFromURL(url)
 
     if(!is.data.frame(response$data$shortcode_media$edge_media_to_comment$edges$node)){
-      stop("No comments")
+      warning("No comments")
+      return(data)
     }
 
     #flattening the data down to the nodes, into a dataframe
