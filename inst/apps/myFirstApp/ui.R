@@ -1,4 +1,38 @@
-
+# ui <- fluidPage(title = 'My First App!',
+#                 theme = shinythemes::shinytheme('flatly'),
+#
+#                 sidebarPanel(
+#                   htmlOutput('compare'),
+#                   #category selector
+#                   selectInput("getCategory", "Category:",
+#                               choices=c('Media','Comments', 'Likes', 'Location'),
+#                               selected = 'Likes'),
+#
+#                   #TEXT INPUT
+#                   textInput("geText", label = h3("Text input"), value = "Enter text..."),
+#
+#
+#
+#                   selectInput("input_type", "Input type",
+#                               c("slider", "text")
+#                   ),
+#
+#                   uiOutput("box"),
+#
+#                   #action button
+#                   actionButton("get", "Get")
+#
+#
+#
+#                 ),
+#
+#
+#                 # Create a spot for the barplot
+#                 mainPanel(
+#                   DT::dataTableOutput("df_data_out")
+#                 )
+#
+#                 )
 
 ui <- navbarPage(title = 'My First App!',
                 theme = shinythemes::shinytheme('flatly'),
@@ -21,41 +55,43 @@ ui <- navbarPage(title = 'My First App!',
 
                          # Create a spot for the barplot
                          mainPanel(
-                           DT::dataTableOutput("df_data_out")
+                           DT::dataTableOutput("search_data_out")
                          )
                  ),
 
                 tabPanel('Get',
                          # Define the sidebar with one input
                          sidebarPanel(
-                           htmlOutput('compare'),
+
                            #category selector
                            selectInput("getCategory", "Category:",
                                        choices=c('Media','Comments', 'Likes', 'Location'),
                                        selected = 'Likes'),
 
+                           selectInput("queryCategory", "Category:",
+                                       choices=c('Shortcode','ID', 'LocationID', 'Tag','URL','Username'),
+                                       selected = 'Likes'),
+
                            #TEXT INPUT
-                           textInput("geText", label = h3("Text input"), value = "Enter text..."),
+                           textInput("getText", label = h3("Query"), value = "Enter text..."),
 
 
 
-                           selectInput("input_type", "Input type",
-                                         c("slider", "text")
-                             ),
+                           # selectInput("input_type", "Input type",
+                           #               c("slider", "text")
+                           #   ),
 
-                           uiOutput("box"),
+                           #uiOutput("box"),
 
                            #action button
                            actionButton("get", "Get")
-
-
 
                          ),
 
 
                          # Create a spot for the barplot
                          mainPanel(
-                           DT::dataTableOutput("df_data_out")
+                           DT::dataTableOutput("get_data_out")
                          )
                 )
 

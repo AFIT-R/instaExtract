@@ -18,11 +18,8 @@
 #'
 #'@examples
 #'\dontrun
-#'{
-#'mapping <- createLocationMapping("United States", "New York")
-#'getMediaByLocationMapping(mapping)
-#'}
-#'
+#'{smapping <- createLocationMapping("United States", "New York")
+#'getMediaByLocationMapping(mapping)}
 #'@export
 
 # Get Media By Location Mapping

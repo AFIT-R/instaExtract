@@ -15,11 +15,8 @@
 #'
 #'@examples
 #'\dontrun
-#'{
-#'mapping <- createLocationMapping("United States", "New York")
-#'getCurrentTopMediaByLocationMapping(mapping)
-#'}
-#'
+#'{mapping <- createLocationMapping("United States", "New York")
+#'getCurrentTopMediaByLocationMapping(mapping)}
 #'@export
 
 # Get CurrentTopMediasByLocationMapping

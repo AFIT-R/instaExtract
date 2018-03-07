@@ -25,9 +25,6 @@ Gets the n most recent media posts for all locations in  a location mapping
 }
 \examples{
 \dontrun
-{
-mapping <- createLocationMapping("United States", "New York")
-getMediaByLocationMapping(mapping)
-}
-
+{smapping <- createLocationMapping("United States", "New York")
+getMediaByLocationMapping(mapping)}
 }
