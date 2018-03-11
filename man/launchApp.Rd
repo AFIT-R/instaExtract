@@ -4,7 +4,7 @@
 \alias{launchApp}
 \title{Launch App}
 \usage{
-launchApp(dir, ..)
+launchApp(dir, ...)
 }
 \arguments{
 \item{dir}{A file directory for the app}

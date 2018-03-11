@@ -11,8 +11,10 @@
 #'\dontrun{ launchApp()}
 #'
 #'@export
+#'
+#'@import shiny
 
-launchApp <- function(dir,..){
+launchApp <- function(dir,...){
 
   app_dir <- system.file('apps', 'myFirstApp', package = 'instaExtract')
 
