@@ -66,25 +66,23 @@ ui <- navbarPage(title = 'My First App!',
                            #category selector
                            selectInput("getCategory", "Category:",
                                        choices=c('Media','Comments', 'Likes', 'Location'),
-                                       selected = 'Likes'),
+                                       selected = 'Media'),
 
-                           selectInput("queryCategory", "Category:",
-                                       choices=c('Shortcode','ID', 'LocationID', 'Tag','URL','Username'),
-                                       selected = 'Likes'),
+                           uiOutput("queryCategory") ,
 
-                           #TEXT INPUT
-                           textInput("getText", label = h3("Query"), value = "Enter text..."),
+                           uiOutput("getQuery"),
 
-                           #n input
-                           numericInput("getN", label = h3("Number of Results"), value = '', min = 1),
+                           uiOutput("getN"),
 
-
-
-                           selectInput("input_type", "Input type",
-                                         c("slider", "text")
-                             ),
-
-                           uiOutput("box"),
+                           # selectInput("queryCategory", "Category:",
+                           #             choices=c('Shortcode','ID', 'LocationID', 'Tag','URL','Username'),
+                           #             selected = 'Likes'),
+                           #
+                           # #TEXT INPUT
+                           # textInput("getText", label = h3("Query"), value = "Enter text..."),
+                           #
+                           # #n input
+                           # numericInput("getN", label = h3("Number of Results"), value = '', min = 1),
 
                            #action button
                            actionButton("get", "Get")

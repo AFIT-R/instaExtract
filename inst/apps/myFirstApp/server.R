@@ -18,40 +18,64 @@ server <- function(input,output,session){
   observeEvent(input$get,{
     if(input$getCategory == 'Media'){
       switch(input$queryCategory,
-             "Username" = {
-               values$df_get_data <- getMediaByUsername(as.character(input$getText), input$getN)
-               get_results <<- values$df_get_data
-             }
+             "Username" = {values$df_get_data <- getMediaByUsername(as.character(input$getQuery), input$getN)},
+             "Shortcode" = {values$df_get_data <- getMediaByCode(as.character(input$getQuery))},
+             "ID" = {values$df_get_data <- getMediaByID(as.character(input$getQuery))},
+             "LocationID" = {values$df_get_data <- getMediaByLocationID(as.character(input$getQuery), input$getN)},
+             "Tag" = {values$df_get_data <- getMediaByTag(as.character(input$getQuery), input$getN)},
+             "URL" = {values$df_get_data <- getMediaByURL(as.character(input$getQuery))}
       )
+      get_results <<- values$df_get_data
     }
   })
-#
-#   observe({
-#     if(input$getCategory=='Likes'){
-#       output$compare <- renderUI({
-#         sliderInput("newinput", label = "choices", min = 3, max = 10, value = 5)
-#       })
-#
-#     } else{
-#
-#       output$compare <- renderUI({
-#         selectInput("newinput",
-#                     label = "choices", choices = c("Hey", "Hello"), selected = "Hey")
-#       })
-#     }
-#   })
 
-  output$box <- renderUI({
-    if (is.null(input$input_type))
+  output$queryCategory <- renderUI({
+    if (is.null(input$getCategory))
        return()
 
     # Depending on input$input_type, we'll generate a different
     # UI component and send it to the client.
-    switch(input$input_type,
-           "slider" = sliderInput("dynamic", "Dynamic",
-                                  min = 1, max = 20, value = 10),
+    switch(input$getCategory,
+           "Media" = selectInput("queryCategory", "Query Type:",
+                                 choices=c('Shortcode','ID', 'LocationID', 'Tag','URL','Username'),
+                                 selected = 'Shortcode'),
            "text" = textInput("dynamic", "Dynamic",
                               value = "starting value")
+    )
+  })
+
+  output$getQuery <- renderUI({
+    if (is.null(input$queryCategory))
+      return()
+
+    # Depending on input$input_type, we'll generate a different
+    # UI component and send it to the client.
+    switch(input$queryCategory,
+           "Shortcode" = textInput("getQuery", "Shortcode",
+                              value = ""),
+           "ID" = textInput("getQuery", "ID",
+                                   value = ""),
+           "LocationID" = textInput("getQuery", "LocationID",
+                            value = ""),
+           "Tag" = textInput("getQuery", "Hashtag",
+                            value = ""),
+           "URL" = textInput("getQuery", "URL",
+                            value = ""),
+           "Username" = textInput("getQuery", "Username",
+                            value = "")
+    )
+  })
+
+  output$getN <- renderUI({
+    if (is.null(input$queryCategory))
+      return()
+
+    # Depending on input$input_type, we'll generate a different
+    # UI component and send it to the client.
+    switch(input$queryCategory,
+           "LocationID" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1),
+           "Tag" = numericInput("getN", label = h3("Number of Results"), value = '20', min = 1),
+           "Username" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1)
     )
   })
 
