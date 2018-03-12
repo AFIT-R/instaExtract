@@ -78,6 +78,9 @@ getMediaByLocationMapping <- function(mapping, n = 12, ...){
     #Call n most recent media posts for each location in mapping
     location_media <- getMediaByLocationID(mapping[row, 'id'], n)
 
+    #stop binding note
+    thumbnail_resources <- dplyr::quo(thumbnail_resources)
+
     #dropping thumbnail resources since it is mostly useless and comes back as a list
     location_media <- subset(location_media, select = -thumbnail_resources)
 

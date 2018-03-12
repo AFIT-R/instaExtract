@@ -45,6 +45,10 @@ getLocationsInRange <- function(mapping, r, lat, long, ...){
     stop("r, lat, and long, must be numeric")
   }
 
+  #stop the binding note
+  latitude <- dplyr::quo(latitude)
+  longitude <- dplyr::quo(longitude)
+
   mapping <- filter(mapping, haversineDistance(latitude, longitude, lat, long) <= r)
 
   return(mapping)

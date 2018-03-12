@@ -67,6 +67,11 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
     media <- jsonlite::flatten(response$user$media$nodes)
 
 
+    #removes the note about global variables
+    thumbnail_resources <- dplyr::quo(thumbnail_resources)
+    gating_info         <- dplyr::quo(gating_info)
+    gating_info.buttons <- dplyr::quo(gating_info.buttons)
+
     #dropping thumbnail resources and gating info since it is mostly useless and comes back as a list
     if('gating_info.buttons' %in% colnames(media)){
       media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
