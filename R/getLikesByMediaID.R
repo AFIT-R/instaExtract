@@ -32,7 +32,7 @@
 
 getLikesByMediaID <- function(ID, n = 10, maxID = "", ...){
 
-  code <- getCodeFromID(mediaID)
+  code <- getCodeFromID(ID)
 
   data <- getLikesByMediaCode(code)
 

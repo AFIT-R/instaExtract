@@ -55,7 +55,7 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
   #will run while more data exists and it has not reached n results
   while(moreAvailable && i < n){
 
-    if(remain > MAX_COMMENTS_PER_REQUEST){
+    if(remain < MAX_COMMENTS_PER_REQUEST){
       numberOfCommentsToRetrieve <- MAX_COMMENTS_PER_REQUEST
       remain <- remain - MAX_COMMENTS_PER_REQUEST
     }
@@ -73,8 +73,8 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
     response <- getJSONFromURL(url)
 
     if(!is.data.frame(response$data$shortcode_media$edge_media_to_comment$edges$node)){
-      warning("No comments")
-      return(data)
+      warning("No more comments")
+      return(url)
     }
 
     #flattening the data down to the nodes, into a dataframe
@@ -83,10 +83,6 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
     #iterating over the rows of the media
     for(row in 1:nrow(media)){
 
-      #will exit loop and return data if reaching the limit
-      if(i == n){
-        return(data)
-      }
 
       #will add a new row of media to data
       data <- plyr::rbind.fill(data,media[row,])
@@ -94,15 +90,26 @@ getCommentsByMediaCode <- function(code, n = 10, maxID = "", ...){
       #incrementing the counting index
       i <- i + 1
 
+      #will exit loop and return data if reaching the limit
+      if(i == n){
+        return(data)
+      }
+
     }
 
-    #Where to start the next query to the instagram link
-    #this version just captures the id of the last node
-    maxID <- media[nrow(media),]$node$id
+
 
     #makes sure more exists
     moreAvailable <- response$data$shortcode_media$edge_media_to_comment$page_info$has_next_page
+
+    if(!moreAvailable){
+      return(data)
+    }
     numberOfComments <- response$data$shortcode_media$edge_media_to_comment$count
+
+    #Where to start the next query to the instagram link
+    #this version just captures the id of the last node
+    maxID <- media[nrow(media),]$id
 
     if(n > numberOfComments){
       n = numberOfComments

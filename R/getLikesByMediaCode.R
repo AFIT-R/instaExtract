@@ -53,7 +53,7 @@ getLikesByMediaCode <- function(code, n = 10, maxID = "", ...){
   #will run while more data exists and it has not reached n results
   while(moreAvailable && i < n){
 
-    if(remain > MAX_LIKES_PER_REQUEST){
+    if(remain < MAX_LIKES_PER_REQUEST){
       number_of_likes_to_retrieve <- MAX_LIKES_PER_REQUEST
       remain <- remain - MAX_LIKES_PER_REQUEST
     }
@@ -76,10 +76,7 @@ getLikesByMediaCode <- function(code, n = 10, maxID = "", ...){
     #iterating over the rows of the media
     for(row in 1:nrow(media)){
 
-      #will exit loop and return data if reaching the limit
-      if(i == n){
-        return(data)
-      }
+
 
       #will add a new row of media to data
       data <- plyr::rbind.fill(data,media[row,])
@@ -87,11 +84,15 @@ getLikesByMediaCode <- function(code, n = 10, maxID = "", ...){
       #incrementing the counting index
       i <- i + 1
 
+      #will exit loop and return data if reaching the limit
+      if(i == n){
+        return(data)
+      }
     }
 
     #Where to start the next query to the instagram link
     #this version just captures the id of the last node
-    maxID <- media[nrow(media),]$node$id
+    maxID <- media[nrow(media),]$id
 
     #makes sure more exists
     more_available <- response$data$shortcode_media$edge_liked_by$page_info$has_next_page

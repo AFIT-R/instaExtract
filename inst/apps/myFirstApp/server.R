@@ -27,6 +27,26 @@ server <- function(input,output,session){
       )
       get_results <<- values$df_get_data
     }
+    else if(input$getCategory == 'Comments'){
+      switch(input$queryCategory,
+             "Shortcode" = {values$df_get_data <- getCommentsByMediaCode(as.character(input$getQuery), input$getN)},
+             "ID" = {values$df_get_data <- getCommentsByMediaID(as.character(input$getQuery), input$getN)}
+      )
+      get_results <<- values$df_get_data
+    }
+    else if(input$getCategory == 'Likes'){
+      switch(input$queryCategory,
+             "Shortcode" = {values$df_get_data <- getLikesByMediaCode(as.character(input$getQuery), input$getN)},
+             "ID" = {values$df_get_data <- getLikesByMediaID(as.character(input$getQuery), input$getN)}
+      )
+      get_results <<- values$df_get_data
+    }
+    else if(input$getCategory == 'Location'){
+      switch(input$queryCategory,
+             "ID" = {values$df_get_data <- getLocationByID(as.character(input$getQuery), input$getN)}
+      )
+      get_results <<- values$df_get_data
+    }
   })
 
   output$queryCategory <- renderUI({
@@ -39,8 +59,15 @@ server <- function(input,output,session){
            "Media" = selectInput("queryCategory", "Query Type:",
                                  choices=c('Shortcode','ID', 'LocationID', 'Tag','URL','Username'),
                                  selected = 'Shortcode'),
-           "text" = textInput("dynamic", "Dynamic",
-                              value = "starting value")
+           "Comments" = selectInput("queryCategory", "Query Type:",
+                                    choices=c('Shortcode','ID'),
+                                    selected = 'Shortcode'),
+           "Likes" = selectInput("queryCategory", "Query Type:",
+                                    choices=c('Shortcode','ID'),
+                                    selected = 'Shortcode'),
+           "Location" = selectInput("queryCategory", "Query Type:",
+                                    choices=c('ID'),
+                                    selected = 'ID')
     )
   })
 
@@ -50,20 +77,46 @@ server <- function(input,output,session){
 
     # Depending on input$input_type, we'll generate a different
     # UI component and send it to the client.
-    switch(input$queryCategory,
-           "Shortcode" = textInput("getQuery", "Shortcode",
+
+    if(input$getCategory == "Media"){
+      switch(input$queryCategory,
+             "Shortcode" = textInput("getQuery", "Shortcode",
+                                     value = ""),
+             "ID" = textInput("getQuery", "ID",
                               value = ""),
-           "ID" = textInput("getQuery", "ID",
-                                   value = ""),
-           "LocationID" = textInput("getQuery", "LocationID",
-                            value = ""),
-           "Tag" = textInput("getQuery", "Hashtag",
-                            value = ""),
-           "URL" = textInput("getQuery", "URL",
-                            value = ""),
-           "Username" = textInput("getQuery", "Username",
-                            value = "")
-    )
+             "LocationID" = textInput("getQuery", "LocationID",
+                                      value = ""),
+             "Tag" = textInput("getQuery", "Hashtag",
+                               value = ""),
+             "URL" = textInput("getQuery", "URL",
+                               value = ""),
+             "Username" = textInput("getQuery", "Username",
+                                    value = "")
+      )
+    }
+    else if(input$getCategory =="Comments"){
+      switch(input$queryCategory,
+             "Shortcode" = textInput("getQuery", "Shortcode",
+                                     value = ""),
+             "ID" = textInput("getQuery", "ID",
+                              value = "")
+      )
+    }
+    else if(input$getCategory =="Likes"){
+      switch(input$queryCategory,
+             "Shortcode" = textInput("getQuery", "Shortcode",
+                                     value = ""),
+             "ID" = textInput("getQuery", "ID",
+                              value = "")
+      )
+    }
+    else if(input$getCategory =="Location"){
+      switch(input$queryCategory,
+             "ID" = textInput("getQuery", "ID",
+                              value = "")
+      )
+    }
+
   })
 
   output$getN <- renderUI({
@@ -72,11 +125,21 @@ server <- function(input,output,session){
 
     # Depending on input$input_type, we'll generate a different
     # UI component and send it to the client.
-    switch(input$queryCategory,
-           "LocationID" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1),
-           "Tag" = numericInput("getN", label = h3("Number of Results"), value = '20', min = 1),
-           "Username" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1)
-    )
+    if(input$getCategory == "Media"){
+
+      switch(input$queryCategory,
+             "LocationID" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1),
+             "Tag" = numericInput("getN", label = h3("Number of Results"), value = '20', min = 1),
+             "Username" = numericInput("getN", label = h3("Number of Results"), value = '12', min = 1)
+      )
+    }
+
+    else if(input$getCategory =="Comments"){
+      numericInput("getN", label = h3("Number of Results"), value = '10', min = 1)
+    }
+    else if(input$getCategory =="Likes"){
+      numericInput("getN", label = h3("Number of Results"), value = '10', min = 1)
+    }
   })
 
   output$search_data_out  <- DT::renderDataTable(values$df_data)

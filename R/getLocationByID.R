@@ -12,6 +12,8 @@
 #'\dontrun{ getLocationByID("212988663")}
 #'
 #'@export
+#'
+#'@importFrom jsonlite flatten
 
 # Get Location By ID
 #
@@ -29,9 +31,12 @@
 getLocationByID <- function(locationID, ...){
 
   #gets the link to the media from the ID
-  mediaLink <- getMediaJsonByLocationIDLink(locationID)
+  url <- getMediaJsonByLocationIDLink(locationID)
 
-  data <- getMediaByURL(mediaLink)
+  #download the json data
+  response <- getJSONFromURL(url)
+
+  data <- response$location
 
 
 

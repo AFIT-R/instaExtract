@@ -1,40 +1,5 @@
-# ui <- fluidPage(title = 'My First App!',
-#                 theme = shinythemes::shinytheme('flatly'),
-#
-#                 sidebarPanel(
-#                   htmlOutput('compare'),
-#                   #category selector
-#                   selectInput("getCategory", "Category:",
-#                               choices=c('Media','Comments', 'Likes', 'Location'),
-#                               selected = 'Likes'),
-#
-#                   #TEXT INPUT
-#                   textInput("geText", label = h3("Text input"), value = "Enter text..."),
-#
-#
-#
-#                   selectInput("input_type", "Input type",
-#                               c("slider", "text")
-#                   ),
-#
-#                   uiOutput("box"),
-#
-#                   #action button
-#                   actionButton("get", "Get")
-#
-#
-#
-#                 ),
-#
-#
-#                 # Create a spot for the barplot
-#                 mainPanel(
-#                   DT::dataTableOutput("df_data_out")
-#                 )
-#
-#                 )
 
-ui <- navbarPage(title = 'My First App!',
+ui <- navbarPage(title = 'InstaExtract',
                 theme = shinythemes::shinytheme('flatly'),
 
                 tabPanel('Search',

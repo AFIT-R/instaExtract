@@ -31,7 +31,7 @@
 
 
 
-getCommentsByMediaID <- function(mediaID, n = 10, maxID = '', ...){
+getCommentsByMediaID <- function(mediaID, n = 10, maxID = "", ...){
 
   code <- getCodeFromID(mediaID)
 

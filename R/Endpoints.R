@@ -120,7 +120,6 @@ getLinkFromURL <- function(url){
 
 getCommentsByCodeLink <- function(code, count, maxID){
 
-
   link <- Comments_Code_Link
   link <- gsub("{{shortcode}}", code, link, fixed = TRUE)
   link <- gsub("{{count}}", count, link, fixed = TRUE)
