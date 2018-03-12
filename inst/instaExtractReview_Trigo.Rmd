@@ -1,0 +1,33 @@
+---
+title: "instaExtract Review"
+author: "1Lt Alexander Trigo"
+date: "March 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Accuracy
+
+Results appear to be accurate.  I used this package to instagram stalk my wife who maintains an instagram based food blog.  All the data pulled from her profile using instaExtract functions and shinyApp are up to date and correct.
+
+
+## Compilation
+
+No issues encountered with install/load of the package.  In general, all functions worked as described in their description files with some minor findings listed below:
+
+* In the createLocationMapping description file Examples, Not run: lowercase True should be TRUE or T
+
+* In order to use the Shiny app, I had to manually install a package called `DT`.  Forcing an automatic installation of this package would be best for the low skill user case scenario.
+
+## Ease of Use
+
+Package functionality is very impressive, and all functions seem to work as described.  The shiny application worked well once the `DT` package was installed.  For feedback I think it would be nice if there was a way to view images from within the app itself instead of having to follow the provided image links.  Additionally, it would be better if some of the in-app variables had better descriptions.  While documentation is complete throughout the package, it is somewhat light. I think the biggest point of improvement might be in more extensive documentation of some of the package functions used from within RStudio.  It is relatively intuitive what functions are doing, and what variables are being displayed in the shiny app, but not always. 
+
+## Grade
+
+I grade this as Excellent – very little rework required (45 pts)
+
+Aside from the minor issues I reported, I found everything to be working accurately and correctly.  This package could improve from more robust documentation, and some visual updates to the shiny app data display, but aside from that it functions well.
