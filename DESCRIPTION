@@ -2,7 +2,7 @@ Package: instaExtract
 Type: Package
 Title: The instaExtract Package Aims to Provide Analysts a Method 
   for Pulling Information from Instagram and a Foundation for 
-  Future Analytic Functions to be Created and Shared.
+  Future Analytic Functions to be Created and Shared
 Version: 0.1.0
 Date: 2018-01-17
 Author: Anthony Kallhoff
@@ -40,7 +40,9 @@ Imports:
   httr,
   lubridate,
   dplyr, 
-  shiny
+  shiny,
+  shinythemes,
+  DT
 Depends: R (>= 2.10)
-License: GPL (>= 2) | file LICENSE
+License: GPL (>= 2) 
 RoxygenNote: 6.0.1

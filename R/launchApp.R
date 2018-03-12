@@ -12,7 +12,10 @@
 #'
 #'@export
 #'
-#'@import shiny
+#'
+#'@import DT
+#'@importFrom shiny shinyAppDir
+#'@import shinythemes
 
 launchApp <- function(dir,...){
 
