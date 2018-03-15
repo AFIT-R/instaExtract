@@ -1,0 +1,29 @@
+Accuracy
+
+The results appear to be accurate. I launched the ShinyApp and tested out my Instagram username. It pulled it up correctly with the 
+accurate data about my account listed.
+The hashtag info I searched getCurrentTopMediaByTag appears to be running correctly from what I can tell from the instagram results listed.
+
+Yes, it can be seen straightforwardly how the results are being obtained. The functions are well-commented and clear. I was able to see 
+what his lines of code are doing to pull the desired information from Instagram. E.G I can see that the pkg jsonlite is used extensively to
+pull certain tidbits from Instagram.
+
+Compilation
+
+Yes, the analytic loaded and performed suitably. No issues upon start-up.
+The only issue I encountered (posted under ISSUES) is that I receieved an error when running:
+getMediaByUsername("officialrickastley", 50)  which is the line of code suggested at the bottom of the function description
+Other than that, all functions I tested ran as intended and produced the desirable results.
+
+Ease of Use
+
+The documentation and descriptions are informative and clear. I was able to easily see the purpose and how-to behind the numerous list of 
+functions inside his package. The output from some of the functions in the R console was pretty chaotic and messy. e.g. when I ran:
+getCurrentTopMediaByTag("cool"), the output was pretty hard to digest and understand. Other than that though, the output was clear and 
+informative,  especially when using the launched Shiny app.
+
+Overall it's clear that a lot of intensive and focused work went into this package. Its capabilities are numerous and it works as designed to
+provide the user/analyst with multiple ways of assessing and 'visualizing' instagram data. It's a multi-faceted tool that is very powerful 
+and unique in the assets it provides to those wishing to gain Instagram insights (marketers, intelligence community, social media experts, 
+etc!). I give this project a 47/50, with the only issue needing fixing being the issue I brought up above with the getMediaByUsername fncn.
+
