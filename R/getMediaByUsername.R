@@ -64,8 +64,10 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
     response <- getJSONFromURL(url)
 
     #flattening the data down to the nodes, into a dataframe
-    media <- jsonlite::flatten(response$user$media$nodes)
+    media <- jsonlite::flatten(response$graphql$user$edge_owner_to_timeline_media$edges$node)
 
+    #tdying list of list with no other information
+    media['caption'] <- unlist(media$edge_media_to_caption.edges)
 
     #removes the note about global variables
     thumbnail_resources <- dplyr::quo(thumbnail_resources)
@@ -74,12 +76,11 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
 
     #dropping thumbnail resources and gating info since it is mostly useless and comes back as a list
     if('gating_info.buttons' %in% colnames(media)){
-      media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons))
+      media <- subset(media, select = -c(thumbnail_resources,gating_info,gating_info.buttons,edge_media_to_caption.edges))
     }
     else{
-      media <- subset(media, select = -c(thumbnail_resources,gating_info))
+      media <- subset(media, select = -c(thumbnail_resources,gating_info,edge_media_to_caption.edges))
     }
-
 
 
     #iterating over the rows of the media
@@ -102,7 +103,7 @@ getMediaByUsername <- function(username, n = 12, maxID = "", ...){
     #this version just captures the id of the last node
     maxID <- media[nrow(media),]$id
     #makes sure more exists
-    moreAvailable <- response$user$media$page_info$has_next_page
+    moreAvailable <- response$graphql$user$edge_owner_to_timeline_media$page_info$has_next_page
 
   }
 

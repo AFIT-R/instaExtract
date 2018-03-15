@@ -15,7 +15,7 @@
 #'
 #'
 #'@examples
-#'\dontrun{ createLocationMapping("United States", "New York", True)}
+#'\dontrun{ createLocationMapping("United States", "New York", TRUE)}
 #'
 #'@export
 
